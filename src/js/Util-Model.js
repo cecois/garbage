@@ -277,7 +277,7 @@ if (clength > 2) {
 			"opacity": 1,
 			"fillOpacity": .5,
 			radius: 4
-		}
+}
 
 		var stylefpt = {
 			radius: 8,
@@ -297,6 +297,14 @@ if (clength > 2) {
 			break;
 			case "RED":
 			return stylered
+			case "active":
+			return stylehigh
+			break;
+			case "fepoly":
+			return stylefpo
+			break;
+			case "point":
+			return stylefpt
 			break;
 			case "aoi":
 			return styleaoi
