@@ -6,6 +6,7 @@ var BelliesView = Backbone.View.extend({
 		.addTo(map);
 
 		this.collection.bind('sync', this.render, this);
+		this.listenTo(noUiSlider, 'change', this.render);
 
 	}
 	,render: function(){
@@ -15,14 +16,16 @@ var BelliesView = Backbone.View.extend({
 
 
 		var timz = []
-
-
+var T = (typeof slider !== 'undefined')?slider.noUiSlider.get():null;
 
 		_.each(this.collection.models,function(R){
 
 			var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style(R.get("fullness")))
 			// cm.bindPopup(R.get("description"))
 			.addTo(GLJ);
+			
+			var S = moment(R.get("timestamp"), ["MM/DD/YYYY hh:mm:ss A"]).unix()
+			console.log(T,S);
 
 			// while we're here
 			timz.push(moment(R.get("timestamp"), ["MM/DD/YYYY hh:mm:ss A"]).unix())

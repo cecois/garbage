@@ -6,8 +6,9 @@ var BelliesMenuView = Backbone.View.extend({
 		var slider = document.getElementById('slider');
 noUiSlider.create(slider, {
 	start: [1398123000000],
-	connect: [true, false],
-	range: {
+	connect: [true, false]
+	,tooltips:true
+	,range: {
 		'min': 1398056700000,
 		'max': 1398225300000
 	}
