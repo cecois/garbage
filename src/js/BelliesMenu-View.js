@@ -12,7 +12,8 @@ noUiSlider.create(slider, {
 		'min': 1398056700000,
 		'max': 1398225300000
 	}
-});
+}).on('drag',(e)=>{console.log(e);});
+
 return this
 	}
 	,render: function(){

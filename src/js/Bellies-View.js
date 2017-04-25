@@ -5,8 +5,8 @@ var BelliesView = Backbone.View.extend({
 		GLJ = L.featureGroup()
 		.addTo(map);
 
-		this.collection.bind('sync', this.render, this);
-		this.listenTo(noUiSlider, 'change', this.render);
+//		this.collection.bind('sync', this.render, this);
+//		this.listenTo(noUiSlider, 'change', this.render);
 
 	}
 	,render: function(){
@@ -20,23 +20,21 @@ var T = (typeof slider !== 'undefined')?slider.noUiSlider.get():null;
 
 		_.each(this.collection.models,function(R){
 
+
+			var S = moment(R.get("timestamp"), ["MM/DD/YYYY hh:mm:ss A"]).unix()
+
+			if(S==T){
 			var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style(R.get("fullness")))
 			// cm.bindPopup(R.get("description"))
 			.addTo(GLJ);
-			
-			var S = moment(R.get("timestamp"), ["MM/DD/YYYY hh:mm:ss A"]).unix()
-			console.log(T,S);
+}			
 
 			// while we're here
-			timz.push(moment(R.get("timestamp"), ["MM/DD/YYYY hh:mm:ss A"]).unix())
+//			timz.push(moment(R.get("timestamp"), ["MM/DD/YYYY hh:mm:ss A"]).unix())
 			
 
 		})
 
-		console.log("_.min(timz)");
-		console.log(moment.unix(_.min(timz)));
-		console.log("_.max(timz)");
-		console.log(moment.unix(_.max(timz)));
 
 // we know this
 map.fitBounds([[42.3037216984154,-71.21337890625001],[42.41635997208289,-70.9545135498047]]);
