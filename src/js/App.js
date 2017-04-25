@@ -32,8 +32,6 @@ window.appStateView  = new StateView({model:appState})
 // POTENTIAL PLACES FROM EITHER NOMINATIM OR OUR OWN PARSING OF COORDS
 // window.triagePlaces = new TriageCollection();
 
-window.appAOI = new AOI();window.appAOIView  = new AOIView({model:appAOI})
-
 window.appQuery = new Query();window.appQueryView  = new QueryView({model:appQuery})
 // CLOUDMADE ET AL
 mapBaseLayers = new BaseLayersCollection(baselayerz.layers);
@@ -44,6 +42,8 @@ mapBaseLayers = new BaseLayersCollection(baselayerz.layers);
     window.mapBaseMapView = new BaseMapView({
         collection: mapBaseLayers
     });
+
+window.appBellies = new BelliesCollection();window.appBelliesView  = new BelliesView({collection:appBellies});window.appBelliesMenuView  = new BelliesMenuView({collection:appBellies})
 
     // and a menu view for stylish swappin'
     // window.appBaseMapsMenuView = new BaseMapsMenuView({

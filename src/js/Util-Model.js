@@ -254,14 +254,29 @@ if (clength > 2) {
 			"fillOpacity": .8,
 			radius: 22
 		}
-		var styledlex = {
-			"color": "black",
-			"fillColor": "black",
-			"dashArray": '3',
-			"weight": 2,
+		var styleyellow = {
+			"color": "white",
+			"fillColor": "yellow",
+			"weight": 1,
 			"opacity": 1,
-			"fillOpacity": 0,
-			radius: 22
+			"fillOpacity": .5,
+			radius: 6
+		}
+		var stylered = {
+			"color": "white",
+			"fillColor": "red",
+			"weight": 1,
+			"opacity": 1,
+			"fillOpacity": .5,
+			radius: 8
+		}
+		var stylegreen = {
+			"color": "white",
+			"fillColor": "green",
+			"weight": 1,
+			"opacity": 1,
+			"fillOpacity": .5,
+			radius: 4
 		}
 
 		var stylefpt = {
@@ -274,14 +289,14 @@ if (clength > 2) {
 		};
 
 		switch (kind) {
-			case "active":
-			return stylehigh
+			case "YELLOW":
+			return styleyellow
 			break;
-			case "fepoly":
-			return stylefpo
+			case "GREEN":
+			return stylegreen
 			break;
-			case "point":
-			return stylefpt
+			case "RED":
+			return stylered
 			break;
 			case "aoi":
 			return styleaoi

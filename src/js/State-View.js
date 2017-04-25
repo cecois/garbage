@@ -76,7 +76,7 @@ if(this.model.get("downout")==target){
 				$(".hit-wrapper").removeClass('split'); //gross but bootstrap responsive didn't work on these manual resizes
 			}
 
-		$(document).attr("title", "Vugo Web App: " + appState.get("slug"));
+		$(document).attr("title", "Big Bellies Atlas - 2014: " + appState.get("slug"));
 
 		return this
 
