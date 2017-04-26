@@ -28,15 +28,18 @@ window.appPanelMenuView = new PanelMenuView({collection:appPanels});
 
 var slider = document.getElementById('slider');
 noUiSlider.create(slider, {
-    start: [1492732800],
-    connect: [true, false]
-    ,tooltips:true
-    ,step: 3600
-    ,range: {
-        'min': 1492732800,
-        'max': 1492862399
-    }
-})
+		start: [1398070800, 1398074400]
+			,behaviour: 'drag-fixed'
+			,tooltips:true
+			,step:3600
+			,connect: true
+			,range: {
+								'min':  1398038400,
+										'max': 1398167999
+											}
+});
+
+
 
 
 // 
