@@ -36,38 +36,38 @@ if(type !== 'count'){
 		return sql;
 	}
 },
-	boundstringFromNOMIN: function(bbox) {
+boundstringFromNOMIN: function(bbox) {
 
-		var bba = bbox
+	var bba = bbox
 
-		if (bba.length < 4) {
-			return "incomplete bbox submitted"
-		}
-
-
-		var s = bba[0]
-		var w = bba[2]
-		var e = bba[3]
-		var n = bba[1]
-
-		var bboxstring = w + "," + s + "," + e + "," + n
-
-		return bboxstring;
-
-	},
-	boundsArrFromBBOX: function(bboxstring){
-
-		var bba = bboxstring.split(",")
-
-		if (bba.length < 4) {
-			return "incomplete bbox submitted"
-		}
+	if (bba.length < 4) {
+		return "incomplete bbox submitted"
+	}
 
 
-		return [bba[0],bba[1],bba[2],bba[3]];
+	var s = bba[0]
+	var w = bba[2]
+	var e = bba[3]
+	var n = bba[1]
 
-	},
-	bbox2wkt: function(bbox){
+	var bboxstring = w + "," + s + "," + e + "," + n
+
+	return bboxstring;
+
+},
+boundsArrFromBBOX: function(bboxstring){
+
+	var bba = bboxstring.split(",")
+
+	if (bba.length < 4) {
+		return "incomplete bbox submitted"
+	}
+
+
+	return [bba[0],bba[1],bba[2],bba[3]];
+
+},
+bbox2wkt: function(bbox){
 // quite rudimentary stopgap (wicket wasn't working at the time) conversion of poly or point to wktL
 
 var coordarr = bbox.split(',')
@@ -277,7 +277,15 @@ if (clength > 2) {
 			"opacity": 1,
 			"fillOpacity": .5,
 			radius: 4
-}
+		}
+		var stylesilent = {
+			"color": "black",
+			"fillColor": "black",
+			"weight": 1,
+			"opacity": .4,
+			"fillOpacity": .2,
+			radius: 4
+		}
 
 		var stylefpt = {
 			radius: 8,
@@ -297,6 +305,10 @@ if (clength > 2) {
 			break;
 			case "RED":
 			return stylered
+			break;
+			case "no_call":
+			return stylesilent
+			break;
 			case "active":
 			return stylehigh
 			break;

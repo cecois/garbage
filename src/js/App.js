@@ -28,21 +28,21 @@ window.appPanelMenuView = new PanelMenuView({collection:appPanels});
 
 var slider = document.getElementById('slider');
 noUiSlider.create(slider, {
-		start: [1398070800, 1398074400]
-			,behaviour: 'drag-fixed'
-			,tooltips:true
-			,step:3600
-			,connect: true
-			,range: {
-								'min':  1398038400,
-										'max': 1398167999
-											}
+  start: [1398070800, 1398074400]
+  ,behaviour: 'drag-fixed'
+  ,tooltips:true
+  ,step:3600
+  ,connect: true
+  ,range: {
+    'min':  1398038400,
+    'max': 1398167999
+}
 });
 
 
 
 
-// 
+//
 // MANAGES PANECONTAINERS FOR ONE THING
 window.appStateView  = new StateView({model:appState})
 
@@ -53,18 +53,18 @@ window.appStateView  = new StateView({model:appState})
 // CLOUDMADE ET AL
 mapBaseLayers = new BaseLayersCollection(baselayerz.layers);
 
-    window.appBaseMapsMenuView = new BaseMapsMenuView({
-        collection: mapBaseLayers
-    });
-    window.mapBaseMapView = new BaseMapView({
-        collection: mapBaseLayers
-    });
+window.appBaseMapsMenuView = new BaseMapsMenuView({
+    collection: mapBaseLayers
+});
+window.mapBaseMapView = new BaseMapView({
+    collection: mapBaseLayers
+});
 
 window.appBellies = new BelliesCollection();window.appBelliesView  = new BelliesView({collection:appBellies});
 // window.appBelliesMenuView  = new BelliesMenuView({collection:appBellies})
 
 slider.noUiSlider.on('end',(e)=>{
-    appBelliesView.render(e[0])
+    appBelliesView.render(e)
 })
 
     // and a menu view for stylish swappin'
@@ -82,4 +82,4 @@ slider.noUiSlider.on('end',(e)=>{
 // appActivity = new Activity();
 // appActivityView = new ActivityView({
 //     model: appActivity
-// }); 
+// });
