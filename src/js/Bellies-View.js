@@ -123,44 +123,36 @@ var allz = _.filter(l,(m)=>{return UTIL.hasha(m[0].get("description"))==UTIL.has
 
 var tses = _.map(allz[0],(m)=>{return m.get("ts_as_ts");});
 
-console.log("here's tses")
-console.log(tses)
-console.log("...and imma use this t to partition it:")
 var lt = parseFloat(t[0])
-console.log(lt)
-console.log("("+moment(lt).format()+")")
 
-var p = _.partition(tses,(tl,lt)=>{return tl<lt})
+var p = _.partition(tses,(tl)=>{return tl<lt})
 
-console.log("pses:");console.log(p)
+if(p[0].length>0){
 
-var las = _.last(p[0])
-console.log("this las is our finder/index:",las)
-xb = _.filter(allz,(a)=>{
-	console.log("checkin it against this a:")
-	console.log(a)
-	return a.ts_as_ts==las})
+	var las = _.last(p[0])
+	// xb = _.filter(allz,(a)=>{
+	// 	console.log("checkin it against this a:")
+	// 	console.log(a)
+	// 	return _.findWhere(a,{ts_as_ts:las})
+	// })
+	var xb = _.find(allz,(tz)=>{
+		var ta= _.find(tz,(t)=>{
+			console.log("our las:",las)
+			if(t.get("ts_as_ts")==las){
+				console.log("the match we wanna end u in Y is ",t.get("description")+".."+t.get("ts_as_ts"))
+			}
+			return t.get("ts_as_ts")==las
+		}) //find.tz
+		return ta
+	}) //find.allz
+	Y=_.last(xb)
+	console.log("Y when its X == 0 but we found a nearest:",Y.get("description")+".."+Y.get("ts_as_ts"));
+}
 
-// if(p[0].length>1){
-// 	var las = _.last(p[0])
-// 	var Y = _.filter(allz,(a)=>{return a.ts_as_ts==las})
-// 	console.log("Y for p0.length>0")
-// 	console.log(Y)
-// } else {
-// 	var Y=_.first();
-// 	Y.fullness="out of range";
-
-// 	console.log("Y for p0.length>0")
-// 	console.log(Y)
-
-// 	// console.log("Y",Y)
-// }
-Y=xb;
-console.log("Y when its X == 0:"); console.log(Y);
 }
 
 
-return Y[0];
+return Y;
 });
 
 
