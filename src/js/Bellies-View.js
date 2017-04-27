@@ -33,7 +33,7 @@ var BelliesView = Backbone.View.extend({
 
 		var T=t
 
-		_.each(this.collection.models,function(R){
+		_.each(this.collection.models,(R,i,l)=>{
 
 			// var S = moment(R.get("timestamp"), ["MM/DD/YYYY hh:mm:ss A"]).unix().toFixed(2)
 
@@ -41,13 +41,24 @@ var BelliesView = Backbone.View.extend({
 			var S = moment(R.get("timestamp"),['MM/DD/YYYY h:mm:ss A']).unix().toFixed(2)
 
 // FIRST TEST FOR ACTUAL match, fall back to most recent
+var real=null,styl=null;
 // var ss = _.filter(appBellies.models,(B)=>{return (B.get("description")=="High & Summer (Sovereign Bank)" && moment(B.get("timestamp"),['MM/DD/YYYY h:mm:ss A']).unix().toFixed(2)< moment("04/22/2014 09:15:00 PM",['MM/DD/YYYY h:mm:ss A']).unix().toFixed(2) )})
 			if(S>=T[0] && S<=T[1]){
+				real = R;
+				styl = real.get("fullness")
+			} 
+			else {
+// 				var falback = _.filter(l,(M)=>{return (M.get("description")==R.get("description") && (moment(M.get("timestamp"),['MM/DD/YYYY h:mm:ss A']).unix() < moment("04/21/2014 09:15:00 AM",['MM/DD/YYYY h:mm:ss A']).unix() ));})
+// console.log("falbak",falbak);
+var real = R;
+real.set({timestamp:"04/21/2014 00:00:00 AM"})
+				styl = "no_call"
+			}
 
-				var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style(R.get("fullness")))
+				var cm = L.circleMarker([real.get("lat"),real.get("lng")], UTIL.get_style(styl))
 			// cm.bindPopup(R.get("description"))
 			.addTo(GLJ);
-		}
+		
 
 
 	})

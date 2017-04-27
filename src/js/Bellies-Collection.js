@@ -1,7 +1,7 @@
 var BelliesCollection = Backbone.Collection.extend({
 	model: Belly,
 	url: function() {
-		return 'assets/big-belly-alerts-2014-mm.json'
+		return 'assets/bellies.2014-apr.json'
 	},
 	initialize: function(options) {
 		// this.listenTo(appState, 'change:slug', this.deactivate);

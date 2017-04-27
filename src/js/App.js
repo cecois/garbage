@@ -63,9 +63,9 @@ window.mapBaseMapView = new BaseMapView({
 window.appBellies = new BelliesCollection();window.appBelliesView  = new BelliesView({collection:appBellies});
 // window.appBelliesMenuView  = new BelliesMenuView({collection:appBellies})
 
-slider.noUiSlider.on('end',(e)=>{
-    appBelliesView.render(e)
-})
+// slider.noUiSlider.on('end',(e)=>{
+//     appBelliesView.render(e)
+// })
 
     // and a menu view for stylish swappin'
     // window.appBaseMapsMenuView = new BaseMapsMenuView({
