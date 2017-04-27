@@ -36,7 +36,12 @@ if(type !== 'count'){
 		return sql;
 	}
 },
-boundstringFromNOMIN: function(bbox) {
+hasha:(s)=>{
+
+	return s.replace(/[^0-9a-z]/gi, '');
+
+}
+,boundstringFromNOMIN: function(bbox) {
 
 	var bba = bbox
 
@@ -279,8 +284,8 @@ if (clength > 2) {
 			radius: 4
 		}
 		var stylesilent = {
-			"color": "black",
-			"fillColor": "black",
+			"color": "white",
+			"fillColor": "white",
 			"weight": 1,
 			"opacity": .4,
 			"fillOpacity": .2,
@@ -306,7 +311,7 @@ if (clength > 2) {
 			case "RED":
 			return stylered
 			break;
-			case "no_call":
+			case "out of range":
 			return stylesilent
 			break;
 			case "active":

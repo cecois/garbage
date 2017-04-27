@@ -2,7 +2,7 @@ var State = Backbone.Model.extend({
 	defaults: {
 		"downout": "down",
 		"slug": "home",
-		"bbox": "3.1626892089843754,50.61113171332364,5.472564697265625,51.172455303299",
+		"bbox": "-71.21337890625001,42.3037216984154,-70.9545135498047,42.41635997208289",
 		"baselayer": null,
 		"overlays": null,
 		"page": null,
@@ -21,40 +21,40 @@ var State = Backbone.Model.extend({
 		return this
 	},
 	upbbox: function(){
-var bbx = map.getBounds().toBBoxString();
-if(this.get("bbox")!==bbx){
-	this.set({bbox:bbx})
-}
+		var bbx = map.getBounds().toBBoxString();
+		if(this.get("bbox")!==bbx){
+			this.set({bbox:bbx})
+		}
 
-return this
+		return this
 
 	},
 	toggle: function(which) {
 
-	var whi = (typeof which == 'undefined') ? "split" : which;
+		var whi = (typeof which == 'undefined') ? "split" : which;
 
-	switch (this.get("downout")) {
-		case "split":
-		wh = "out"
-		break;
-		case "down":
-		wh = "out"
-		break;
-		case null:
-		wh = 'nil'
-		break;
-		default:
-		wh = whi
-	}
+		switch (this.get("downout")) {
+			case "split":
+			wh = "out"
+			break;
+			case "down":
+			wh = "out"
+			break;
+			case null:
+			wh = 'nil'
+			break;
+			default:
+			wh = whi
+		}
 
-	this.set({
-		downout:
-		wh
-	})
+		this.set({
+			downout:
+			wh
+		})
 
-	return this
+		return this
 
-},
+	},
 	pullurl: function() {
 
 		var uslug = this.get("slug")

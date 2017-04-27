@@ -19,19 +19,19 @@ return this
 	},
 	default: function(slug,page,query,baselayer,aoi,downout,active,bbox) {
 
-console.info("VARDUMP:");
-console.log("slug:"+slug+";page:"+page+";query:"+query+";baselayer:"+baselayer+";aoi:"+aoi+";downout:"+downout+";active:"+active+";bbox:"+bbox);
+// console.info("VARDUMP:");
+// console.log("slug:"+slug+";page:"+page+";query:"+query+";baselayer:"+baselayer+";aoi:"+aoi+";downout:"+downout+";active:"+active+";bbox:"+bbox);
 
 		var zslug = (typeof slug !=='undefined' && slug !== null) ? slug : "home";
-		
+
 		var zactive = (typeof active !=='undefined' && active !== null) ? active : null;
 
 		var zpage = (typeof page !=='undefined' && active !== null) ? page : "1";
 
 		var zquery = ((query!==null) && (query!=="nil") && (query)) ? query : "*:*";
-		
+
 		var zaoi = ((aoi!==null) && (aoi!=="nil") && (aoi)) ? aoi : null;
-		
+
 		// var zblayername = ( baselayer=="nil" || typeof baselayer == 'undefined' || baselayer == null) ? mapBaseLayers.findWhere({active:true}).get("name"):
 		var zblayername = ( baselayer=="nil" || typeof baselayer == 'undefined' || baselayer == null ) ? mapBaseLayers.findWhere({active:true}).get("name") : baselayer;
 
@@ -47,7 +47,7 @@ console.log("slug:"+slug+";page:"+page+";query:"+query+";baselayer:"+baselayer+"
 // zlayers=zlayername
 
 		var zdownout = (typeof downout !== 'undefined' && downout!==null && downout !== 'nil') ? downout : "down";
-		
+
 		var zbbox = (typeof bbox !== 'undefined' && bbox!==null && bbox!=="null" && bbox!=="nil") ? bbox : appState.get("bbox");
 
 

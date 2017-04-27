@@ -34,8 +34,9 @@ noUiSlider.create(slider, {
   ,step:3600
   ,connect: true
   ,range: {
-    'min':  1398038400,
-    'max': 1398167999
+    'min':  1398038400
+    // 'max': 1398167999 // 22nd
+    ,'max':1398427732 //25th
 }
 });
 
@@ -63,9 +64,10 @@ window.mapBaseMapView = new BaseMapView({
 window.appBellies = new BelliesCollection();window.appBelliesView  = new BelliesView({collection:appBellies});
 // window.appBelliesMenuView  = new BelliesMenuView({collection:appBellies})
 
-// slider.noUiSlider.on('end',(e)=>{
-//     appBelliesView.render(e)
-// })
+slider.noUiSlider.on('end',(e)=>{
+    appBelliesView.render(e)
+    // appBelliesView.get_ranges(e)
+})
 
     // and a menu view for stylish swappin'
     // window.appBaseMapsMenuView = new BaseMapsMenuView({
