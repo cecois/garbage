@@ -28,16 +28,29 @@ window.appPanelMenuView = new PanelMenuView({collection:appPanels});
 
 var slider = document.getElementById('slider');
 noUiSlider.create(slider, {
-  start: [1398070800, 1398074400]
+  start: [1398038400, 1398042000]
   ,behaviour: 'drag-fixed'
   ,tooltips:true
   ,step:3600
   ,connect: true
   ,range: {
     'min':  1398038400
-    // 'max': 1398167999 // 22nd
-    ,'max':1398427732 //25th
+    ,'max': 1398167999 // 22nd
+    // ,'max':1398427732 //25th
 }
+,format: {
+      to: function ( value ) {
+console.log("to",value);
+        var t = parseInt(value)
+        return moment(t,['X']).format();
+      },
+      from: function ( value ) 
+      {
+        console.log("from",value);
+        var t = parseInt(value)
+        return moment(t,['X']).format();
+      }
+    }
 });
 
 
@@ -72,6 +85,10 @@ slider.noUiSlider.on('end',(e)=>{
     appBelliesView.render(e)
 })
 
+L.geoJSON(BOS, {
+
+        // onEachFeature: onEachFeature
+    }).addTo(map);
     // and a menu view for stylish swappin'
     // window.appBaseMapsMenuView = new BaseMapsMenuView({
     //     collection: mapBaseLayers
