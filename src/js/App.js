@@ -45,6 +45,9 @@ noUiSlider.create(slider, {
 
 //
 // MANAGES PANECONTAINERS FOR ONE THING
+window.appActivity = new Activity();
+window.appActivityView  = new ActivityView({model:appActivity})
+
 window.appStateView  = new StateView({model:appState})
 
 // POTENTIAL PLACES FROM EITHER NOMINATIM OR OUR OWN PARSING OF COORDS
@@ -65,8 +68,8 @@ window.appBellies = new BelliesCollection();window.appBelliesView  = new Bellies
 // window.appBelliesMenuView  = new BelliesMenuView({collection:appBellies})
 
 slider.noUiSlider.on('end',(e)=>{
+    appActivity.set({msg:"calculating belly calls..."})
     appBelliesView.render(e)
-    // appBelliesView.get_ranges(e)
 })
 
     // and a menu view for stylish swappin'

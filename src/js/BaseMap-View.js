@@ -35,8 +35,6 @@ var BaseMapView = Backbone.View.extend({
 			active: true
 		});
 
-		console.log("am.34:");console.log(am.get("name"));
-
 		var def = (typeof am !== 'undefined')?am.get("definition"):null;
 
 		// remove global layer here first so we don't keep stacking baselayers

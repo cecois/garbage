@@ -314,6 +314,9 @@ if (clength > 2) {
 			case "out of range":
 			return stylesilent
 			break;
+			case "default":
+			return stylesilent
+			break;
 			case "active":
 			return stylehigh
 			break;
