@@ -1,3 +1,4 @@
 .DS_Store
 Config.js
 processing/node_modules
+*.DS_Store
