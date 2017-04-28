@@ -18,6 +18,7 @@
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- <link href="lib/nprogress/nprogress.css" rel="stylesheet"> -->
   <link href="lib/bootstrap-slider/bootstrap-slider.min.css" rel="stylesheet">
+  <link href="lib/nprogress/nprogress.min.css" rel="stylesheet">
   <!-- <link href="lib/switchery/switchery.min.css" rel="stylesheet"> -->
 
   <!-- fonts -->
@@ -205,30 +206,11 @@
 
       <div id="paneContainer" class="tab-content container-fluid col-sm-12">
 
-        <ul class="tab-pane active row" id="home"><h1>HOME</h1></ul>
-        <ul class="tab-pane active row" id="baa"><h1>2014 Boston Marathon</h1></ul>
-        <div class="tab-pane" id="search">
-          <h1>SEARCH</h1>
-          <div id="search-wrapper" class="col-sm-12">
-            <!-- <div id="dlex-button-wrapper" class="col-sm-12"></div> -->
-            <div id="search-stats" class=""></div>
-            <div id="dlex-toggle-wrapper"></div>
-            <div id="search-hits" class="col-sm-12"></div>
-          </div>
+        <div class="tab-pane active row" id="home"><h1></h1></div>
+        <div class="tab-pane active row" id="baa"><h1>2014 Boston Marathon</h1></div>
 
-        </div>
-        <div class="tab-pane" id="details"><h1>DETAILS</h1></div>
-        <div class="tab-pane" id="queue"><h1>QUEUE</h1></div>
-        <div class="tab-pane" id="download"><h1>DOWNLOAD</h1></div>
-        <div class="tab-pane" id="updates"><h1>UPDATES</h1></div>
+        <div class="tab-pane" id="about"><h1>ABOUT</h1></div>
 
-        <div class="tab-pane " id="help" style="text-align:center;"><h1>HELP</h1>
-        </div>
-
-        <div class="tab-pane fade span10" id="admin"><h1>ADMIN</h1></div>
-        <div class="tab-pane fade span10" id="perdisc">
-          <h1>PERDISC</h1>
-        </div>
 
       </div>
 
@@ -237,10 +219,11 @@
 
       <div id="footer" class="row col-sm-12">
        <ul class="list-unstyled col-sm-6 pull-left">
-         <li class="col-md-6" id="mini-console">
-
-         </li>
-       </ul>
+         <li class="col-md-12" id="mini-console">
+           <div class="col-sm-12 pull-left" id="mc-msg"></div>
+           <div class="col-sm-12 pull-left" id="mc-throb"></div>
+        </li>
+      </ul>
 
 <!--
 <div class="col-sm-2"></div>
@@ -271,6 +254,7 @@
 <script src="lib/components/moment/min/moment.min.js"></script>
 <script src="lib/underscore-min.js"></script>
 <script src="lib/bootstrap-slider/bootstrap-slider.min.js"></script>
+<script src="lib/nprogress/nprogress.min.js"></script>
 <script src="lib/backbone-min.js"></script>
 <script src="lib/handlebars.min.runtime.js"></script>
 <script src="js/H-templates-compiled.js"></script>

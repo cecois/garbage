@@ -11,23 +11,29 @@ var ActivityView = Backbone.View.extend({
 		// }
 	},
 	initialize: function() {
+		NProgress.configure({
+			parent: "#mc-throb"
+			,showSpinner: false
+		});
+
 		this.listenTo(this.model, 'change', this.render);
-		return this.render()
+		// return this.render()
 	},
 	render: function() {
-		console.log("render of actv");
-		console.log(this.model.get("msg"));
-if(this.model.get("msg")==null)
-{
-	return this.stfu()
-} else {
-		$(this.el).html(this.template(this.model.toJSON()))}
-		return this
+		if(this.model.get("msg")!==null)
+		{
+			$(this.el).find('#mc-msg').html(this.template(this.model.toJSON()))
+			if(this.model.get("throb")==true){NProgress.start();}
+			return this
+		}
+		else {
+			return this.stfu()
+		}
 	}
 	,stfu: function(){
 
-console.log("stfu of av");
-		$(this.el).html("")
+		$(this.el).find('#mc-msg').html(" ")
+		NProgress.done();
 
 		return this
 	}

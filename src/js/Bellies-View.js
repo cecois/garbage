@@ -10,6 +10,15 @@ var BelliesView = Backbone.View.extend({
 		return this
 		.preset()
 	}
+	// ,prerender:function(t){
+
+	// 	appActivity.set({msg:"prerendering..."})
+
+	// 	return this
+	// 	.render(t)
+
+
+	// }
 	,preset: function(){
 
 
@@ -90,6 +99,9 @@ return Y;
 		return REPS
 
 	}
+	,stfu: ()=>{
+		appActivity.set({msg:null})
+	}
 	,render: function(t){
 
 
@@ -113,8 +125,8 @@ return Y;
 
 		})
 
-		appActivity.set({msg:null})
 		return this
+		.stfu()
 
 
 	}

@@ -1,11 +1,7 @@
 /* ------------- GLOBALS -------------------------------------- */
-
-
-
-
-
 // UTILITY CLASS (CONVERSIONS/SNIFFS/ETC.)
 window.UTIL = new Util();
+
 
 /* ------------- BASELAYERS ---------------------------------------- */
     // baselayers we now keep statically right here
@@ -15,11 +11,11 @@ window.UTIL = new Util();
     var panelz ={"panels":[
     {"id":"home","displayname":"Home"}
     ,{"id":"baa","displayname":"Marathon 2014","active":true}
-    ,{"id":"search","displayname":"Search Results"}
-    ,{"id":"browse","displayname":"Browse"}
+    ,{"id":"about","displayname":"About"}
+    // ,{"id":"browse","displayname":"Browse"}
     // ,{"id":"queue","displayname":"Download Queue"}
     // ,{"id":"gsiab","displayname":"GSinaBOX"}
-    ,{"id":"help","displayname":"Help/Docu"}
+    // ,{"id":"help","displayname":"Help/Docu"}
     ]}
 
 // STATE LISTENS FOR AND SETS MOST/ALL OF THE PARAMS COMING IN FRM ROUTE (OR DEFAULT)
@@ -53,38 +49,6 @@ var slider = $("#slider").slider({
     ,tooltip:"show"
     }); //slider init
 
-
-
-// var slider = document.getElementById('slider');
-// noUiSlider.create(slider, {
-//   start: [1398038400, 1398042000]
-//   ,behaviour: 'drag-fixed'
-//   ,tooltips:true
-//   ,step:3600
-//   ,connect: true
-//   ,range: {
-//     'min':  1398038400
-//     ,'max': 1398167999 // 22nd
-//     // ,'max':1398427732 //25th
-// }
-// ,format: {
-//       to: function ( value ) {
-// console.log("to",value);
-//         var t = parseInt(value)
-//         return moment(t,['X']).format();
-//       },
-//       from: function ( value )
-//       {
-//         console.log("from",value);
-//         var t = parseInt(value)
-//         return moment(t,['X']).format();
-//       }
-//     }
-// });
-
-
-
-
 //
 // MANAGES PANECONTAINERS FOR ONE THING
 window.appActivity = new Activity();
@@ -92,10 +56,6 @@ window.appActivityView  = new ActivityView({model:appActivity})
 
 window.appStateView  = new StateView({model:appState})
 
-// POTENTIAL PLACES FROM EITHER NOMINATIM OR OUR OWN PARSING OF COORDS
-// window.triagePlaces = new TriageCollection();
-
-// window.appQuery = new Query();window.appQueryView  = new QueryView({model:appQuery})
 // CLOUDMADE ET AL
 mapBaseLayers = new BaseLayersCollection(baselayerz.layers);
 
@@ -107,25 +67,14 @@ window.mapBaseMapView = new BaseMapView({
 });
 
 window.appBellies = new BelliesCollection();window.appBelliesView  = new BelliesView({collection:appBellies});
-// window.appBelliesMenuView  = new BelliesMenuView({collection:appBellies})
 
-// slider.noUiSlider.on('end',(e)=>{
-//     appActivity.set({msg:"calculating belly calls..."})
-//     appBelliesView.render(e)
-// })
-
-// slider.on('change',(v)=>{
-//     t = [v.value.oldValue,v.value.newValue]
-//     appBelliesView.render(t)
-// })
 var t =[]
 slider.on('slideStart',(v)=>{
-    console.log("start v",v)
+    appActivity.set({msg:"calculating Belly signals since "+moment(v.value,['X']).format("ddd, hA")+"...",throb:true})
     t.push(v.value)
 }).on('slideStop',(v)=>{
     t.push(v.value)
     appBelliesView.render(t)
-    console.log("end v",v)
     t=[]
 })
 
@@ -134,19 +83,3 @@ L.geoJSON(BOS, {
     style:UTIL.get_style('baa')
 
 }).addTo(map);
-    // and a menu view for stylish swappin'
-    // window.appBaseMapsMenuView = new BaseMapsMenuView({
-    //     collection: mapBaseLayers
-    // });
-    // window.mapBaseMapView = new BaseMapView({
-    //     collection: mapBaseLayers
-    // });
-    // window.appPanelMenuView = new PanelMenuView({
-    //     collection: appPanels
-    // });
-
-// new activity model and view
-// appActivity = new Activity();
-// appActivityView = new ActivityView({
-//     model: appActivity
-// });

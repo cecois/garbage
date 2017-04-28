@@ -2,19 +2,42 @@ var StateView = Backbone.View.extend({
 
 	el: $("body"),
 	events: {
-		"click #paneToggler-split": "downout",
-		"click #paneToggler-down": "downout"
+		"click #paneToggler-split": "downout"
+		,"click #paneToggler-down": "downout"
+		,"keydown": "downout"
+
 	},
 	initialize: function() {
 		this.listenTo(this.model, 'change', this.render)
 			// this.listenTo(map, 'moveend', this.bboxup);
 			return this
-		},
-		downout: function(e) {
+		}
+		,downout: function(e) {
+			// console.log(e)
+			// return this
+			// console.log(e)
+			var target=null
+			// if(typeof e == 'object'){
+				if(e.type == 'click'){
+					e.preventDefault();
+					target = $(e.currentTarget).attr("id").split("-")[1]
+				} else {
 
-			e.preventDefault();
 
-			var target = $(e.currentTarget).attr("id").split("-")[1]
+					switch (e.keyCode) {
+						case 18:
+						target = 'down'
+						break;
+						case 17:
+						target = 'split'
+						break;
+						default:
+						target = null
+					}
+
+					// if(e.keyCode==18){target='down'} else if(e.keyCode==17){target='split';
+				}
+
 
 // override if the same state was requested (in effect resetting)
 if(this.model.get("downout")==target){
@@ -22,11 +45,12 @@ if(this.model.get("downout")==target){
 }
 
 			// this.model.toggle("split")
-			this.model.set({downout:target})
+			if(this.model.get("downout")!==target && target!==null){
+				this.model.set({downout:target})}
 
-			return this
+				return this
 
-		},
+			},
 		// bboxup: function() {
 
 		// 	var bbox = map.getBounds().toBBoxString()
@@ -76,10 +100,10 @@ if(this.model.get("downout")==target){
 				$(".hit-wrapper").removeClass('split'); //gross but bootstrap responsive didn't work on these manual resizes
 			}
 
-		$(document).attr("title", "Big Bellies Atlas - 2014: " + appState.get("slug"));
+			$(document).attr("title", "Big Bellies Atlas - 2014: " + appState.get("slug"));
 
-		return this
+			return this
 
-	}
+		}
 
-});
+	});
