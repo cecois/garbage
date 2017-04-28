@@ -2,35 +2,35 @@ var Route = Backbone.Router.extend({
 	routes: {
 		"(:slug)(/:page)(/:query)(/:baselayer)(/:aoi)(/:downout)(/:active)(/:bbox)(/)":"default"
 	},
-initialize: function(options) {
+	initialize: function(options) {
 		options || (options = {});
 		appState.on('change', this.update, this)
 		return this
 	},
 	update: function(){
 
-if(appState.hasChanged()==true){
-appRoute.navigate(appState.pullurl(), {trigger: true,replace: false});} else {
-	console.log("state has not changed, no navigation required");
-}
+		if(appState.hasChanged()==true){
+			appRoute.navigate(appState.pullurl(), {trigger: true,replace: false});} else {
+				console.log("state has not changed, no navigation required");
+			}
 
-return this
+			return this
 
-	},
-	default: function(slug,page,query,baselayer,aoi,downout,active,bbox) {
+		},
+		default: function(slug,page,query,baselayer,aoi,downout,active,bbox) {
 
 // console.info("VARDUMP:");
 // console.log("slug:"+slug+";page:"+page+";query:"+query+";baselayer:"+baselayer+";aoi:"+aoi+";downout:"+downout+";active:"+active+";bbox:"+bbox);
 
-		var zslug = (typeof slug !=='undefined' && slug !== null) ? slug : "home";
+var zslug = (typeof slug !=='undefined' && slug !== null) ? slug : "baa";
 
-		var zactive = (typeof active !=='undefined' && active !== null) ? active : null;
+var zactive = (typeof active !=='undefined' && active !== null) ? active : null;
 
-		var zpage = (typeof page !=='undefined' && active !== null) ? page : "1";
+var zpage = (typeof page !=='undefined' && active !== null) ? page : "1";
 
-		var zquery = ((query!==null) && (query!=="nil") && (query)) ? query : "*:*";
+var zquery = ((query!==null) && (query!=="nil") && (query)) ? query : "*:*";
 
-		var zaoi = ((aoi!==null) && (aoi!=="nil") && (aoi)) ? aoi : null;
+var zaoi = ((aoi!==null) && (aoi!=="nil") && (aoi)) ? aoi : null;
 
 		// var zblayername = ( baselayer=="nil" || typeof baselayer == 'undefined' || baselayer == null) ? mapBaseLayers.findWhere({active:true}).get("name"):
 		var zblayername = ( baselayer=="nil" || typeof baselayer == 'undefined' || baselayer == null ) ? mapBaseLayers.findWhere({active:true}).get("name") : baselayer;
@@ -46,9 +46,9 @@ return this
 // zlayers=new Array(zlayername)
 // zlayers=zlayername
 
-		var zdownout = (typeof downout !== 'undefined' && downout!==null && downout !== 'nil') ? downout : "down";
+var zdownout = (typeof downout !== 'undefined' && downout!==null && downout !== 'nil') ? downout : "down";
 
-		var zbbox = (typeof bbox !== 'undefined' && bbox!==null && bbox!=="null" && bbox!=="nil") ? bbox : appState.get("bbox");
+var zbbox = (typeof bbox !== 'undefined' && bbox!==null && bbox!=="null" && bbox!=="nil") ? bbox : appState.get("bbox");
 
 
 
@@ -62,7 +62,7 @@ appState.set({
 	active:
 	(appState.get("active")!==zactive) ? zactive : appState.get("active")
 	,
-		aoi:
+	aoi:
 	(appState.get("aoi")!==zaoi) ? zaoi : appState.get("aoi")
 	,
 	bbox:

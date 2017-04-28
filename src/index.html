@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- <link href="lib/nprogress/nprogress.css" rel="stylesheet"> -->
-  <link href="lib/nouislider/nouislider.min.css" rel="stylesheet">
+  <link href="lib/bootstrap-slider/bootstrap-slider.min.css" rel="stylesheet">
   <!-- <link href="lib/switchery/switchery.min.css" rel="stylesheet"> -->
 
   <!-- fonts -->
@@ -48,71 +48,118 @@
     <ul class="header-buttons  col-sm-4 pull-left list-unstyled">
 
      <li class="col-md-2">
-      <div class="header-button">
-        <span class="icon-lab" data-original-title="Link One"></span
+      <a href=""><div class="header-button">
+        <span class="icon-lab" data-original-title="Boston Open Data Challenge"></span>
+      </div></a>
+    </li>
+    <li class="col-md-3">
+      <a href=""><div class="header-button">
+        <span class="icon-libhome" data-original-title="Link Two"></span>
 
-        </div></a>
-      </li>
-      <li class="col-md-3">
-        <a href=""><div class="header-button">
-          <span class="icon-libhome" data-original-title="Link Two"></span
+      </div></a>
+    </li>
+    <li class="col-md-3">
+     <a href="#a"><div class="header-button">
+       <span class="icon-map" data-original-title="Link Three"></span>
 
-          </div></a>
-        </li>
-        <li class="col-md-3">
-         <a href="#a"><div class="header-button">
-           <span class="icon-map" data-original-title="Link Three"></span>
+     </div></a>
+   </li>
 
-         </div></a>
-       </li>
+   <li class="col-md-1">
+    <a href=""><div class="header-button">
+      <span class="icon-users" data-original-title="Link Four"></span>
 
-       <li class="col-md-1">
-        <a href=""><div class="header-button">
-          <span class="icon-users" data-original-title="Link Four"></span
+    </div></a>
+  </li>
+  <li class="col-md-3">
+    <a href=""><div class="header-button">
+      <span class="icon-map" data-original-title="Link Five"></span>
 
-          </div></a>
-        </li>
-        <li class="col-md-3">
-          <a href=""><div class="header-button">
-            <span class="icon-map" data-original-title="Link Five"></span
-
-            </div></a>
-          </li>
-
-
-
-        </ul>
-
-        <div class="app-title  col-sm-6 pull-right">
-          <span style="text-align:right;">bbbbranding area</span>
-        </div>
-
-
-      </div>
-
-
-      <div id="navContainer" class="row pull-left col-md-12">
-
-        <div class="tabbable tabs-below col-md-12">
-          <ul class="nav nav-tabs col-md-12">
-
-          </ul>
-        </div> <!-- .tabbable -->
-      </div> <!-- navContainer -->
-
-
-      <div id="searchFormContainer" class="row pull-left col-sm-12">
-        <div id="paneToggler-split" class="col-sm-1 icon-ico-pane-split">
+    </div></a>
+  </li>
 
 
 
-          <div style="font-size:.4em;position:relative;top:0px;" class="col-sm-11">ctrl</div>
+</ul>
 
-        </div> <!-- ./ panetoggler-split -->
+<div class="app-title  col-sm-6 pull-right">
+  <span style="text-align:right;">bbbbranding area</span>
+</div>
 
-        <div class="col-sm-2"></div>
-        <div id="slider" class="col-sm-6">
 
+</div>
+
+
+<div id="navContainer" class="row pull-left col-md-12">
+
+  <div class="tabbable tabs-below col-md-12">
+    <ul class="nav nav-tabs col-md-12">
+
+    </ul>
+  </div> <!-- .tabbable -->
+</div> <!-- navContainer -->
+
+
+<div id="searchFormContainer" class="row pull-left col-sm-12">
+  <div id="paneToggler-split" class="col-sm-1 icon-ico-pane-split">
+
+
+
+    <div style="font-size:.4em;position:relative;top:0px;" class="col-sm-11">ctrl</div>
+
+  </div> <!-- ./ panetoggler-split -->
+
+  <div class="col-sm-2"></div>
+  <div id="slider-container" class="col-sm-6">
+    <div id="slider"></div>
+          <!-- <input
+          type="text"
+          name="somename"
+          data-provide="slider"
+          data-slider-ticks="[ 1398038400,
+          1398045600,
+          1398052800,
+          1398060000,
+          1398067200,
+          1398074400,
+          1398081600,
+          1398088800,
+          1398096000,
+          1398103200,
+          1398110400,
+          1398117600,
+          1398124800,
+          1398132000,
+          1398139200,
+          1398146400,
+          1398153600,
+          1398160800,
+          1398168000 ]"
+          data-slider-ticks-labels="[ '08:00 PM',
+          '10:00 PM',
+          '12:00 AM',
+          '02:00 AM',
+          '04:00 AM',
+          '06:00 AM',
+          '08:00 AM',
+          '10:00 AM',
+          '12:00 PM',
+          '02:00 PM',
+          '04:00 PM',
+          '06:00 PM',
+          '08:00 PM',
+          '10:00 PM',
+          '12:00 AM',
+          '02:00 AM',
+          '04:00 AM',
+          '06:00 AM',
+          '08:00 AM' ]"
+          data-slider-min="1398038400"
+          data-slider-max="1398168000"
+          data-slider-step="3600"
+          data-slider-value="3"
+          data-slider-tooltip="show"
+          > -->
         </div> <!-- slider -->
         <div class="col-sm-2"></div>
 
@@ -159,6 +206,7 @@
       <div id="paneContainer" class="tab-content container-fluid col-sm-12">
 
         <ul class="tab-pane active row" id="home"><h1>HOME</h1></ul>
+        <ul class="tab-pane active row" id="baa"><h1>2014 Boston Marathon</h1></ul>
         <div class="tab-pane" id="search">
           <h1>SEARCH</h1>
           <div id="search-wrapper" class="col-sm-12">
@@ -191,8 +239,8 @@
        <ul class="list-unstyled col-sm-6 pull-left">
          <li class="col-md-6" id="mini-console">
 
-       </li>
- </ul>
+         </li>
+       </ul>
 
 <!--
 <div class="col-sm-2"></div>
@@ -222,7 +270,7 @@
 <script src="lib/components/jquery/jquery.min.js"></script>
 <script src="lib/components/moment/min/moment.min.js"></script>
 <script src="lib/underscore-min.js"></script>
-<script src="lib/nouislider/nouislider.min.js"></script>
+<script src="lib/bootstrap-slider/bootstrap-slider.min.js"></script>
 <script src="lib/backbone-min.js"></script>
 <script src="lib/handlebars.min.runtime.js"></script>
 <script src="js/H-templates-compiled.js"></script>

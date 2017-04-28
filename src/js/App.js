@@ -13,7 +13,8 @@ window.UTIL = new Util();
 
     // var baselayerz = {"layers":[{"name":"dummy","active":true,"source":"localhost","nom":"A Real Dummy","thumb":"images/thumbs/dummy00-dummy00.jpg","mapis":"dark","definition":{"maxZoom":18,"url":"images/thumbs/dummy00-dummy00.jpg","noWrap":true}}]};
     var panelz ={"panels":[
-    {"id":"home","displayname":"Home","active":true}
+    {"id":"home","displayname":"Home"}
+    ,{"id":"baa","displayname":"Marathon 2014","active":true}
     ,{"id":"search","displayname":"Search Results"}
     ,{"id":"browse","displayname":"Browse"}
     // ,{"id":"queue","displayname":"Download Queue"}
@@ -26,32 +27,60 @@ window.appState = new State();
 window.appPanels = new PanelsCollection(panelz.panels);
 window.appPanelMenuView = new PanelMenuView({collection:appPanels});
 
-var slider = document.getElementById('slider');
-noUiSlider.create(slider, {
-  start: [1398038400, 1398042000]
-  ,behaviour: 'drag-fixed'
-  ,tooltips:true
-  ,step:3600
-  ,connect: true
-  ,range: {
-    'min':  1398038400
-    ,'max': 1398167999 // 22nd
-    // ,'max':1398427732 //25th
-}
-,format: {
-      to: function ( value ) {
-console.log("to",value);
-        var t = parseInt(value)
-        return moment(t,['X']).format();
-      },
-      from: function ( value ) 
-      {
-        console.log("from",value);
-        var t = parseInt(value)
-        return moment(t,['X']).format();
-      }
-    }
-});
+var slider = $("#slider").slider({
+    id:"slider"
+    ,formatter: (v)=>{return moment(v,['X']).format('dd hh:ss A')}
+    ,ticks_snap_bounds:1800
+    ,ticks:[ 1398038400,
+    1398045600,
+    1398052800,
+    1398060000,
+    1398067200,
+    1398074400,
+    1398081600,
+    1398088800,
+    1398096000,
+    1398103200,
+    1398110400,
+    1398117600,
+    1398124800,
+    1398132000,
+    1398139200,
+    1398146400,
+    1398153600,
+    1398160800,
+    1398168000 ]
+    ,tooltip:"show"
+    }); //slider init
+
+
+
+// var slider = document.getElementById('slider');
+// noUiSlider.create(slider, {
+//   start: [1398038400, 1398042000]
+//   ,behaviour: 'drag-fixed'
+//   ,tooltips:true
+//   ,step:3600
+//   ,connect: true
+//   ,range: {
+//     'min':  1398038400
+//     ,'max': 1398167999 // 22nd
+//     // ,'max':1398427732 //25th
+// }
+// ,format: {
+//       to: function ( value ) {
+// console.log("to",value);
+//         var t = parseInt(value)
+//         return moment(t,['X']).format();
+//       },
+//       from: function ( value )
+//       {
+//         console.log("from",value);
+//         var t = parseInt(value)
+//         return moment(t,['X']).format();
+//       }
+//     }
+// });
 
 
 
@@ -80,15 +109,31 @@ window.mapBaseMapView = new BaseMapView({
 window.appBellies = new BelliesCollection();window.appBelliesView  = new BelliesView({collection:appBellies});
 // window.appBelliesMenuView  = new BelliesMenuView({collection:appBellies})
 
-slider.noUiSlider.on('end',(e)=>{
-    appActivity.set({msg:"calculating belly calls..."})
-    appBelliesView.render(e)
+// slider.noUiSlider.on('end',(e)=>{
+//     appActivity.set({msg:"calculating belly calls..."})
+//     appBelliesView.render(e)
+// })
+
+// slider.on('change',(v)=>{
+//     t = [v.value.oldValue,v.value.newValue]
+//     appBelliesView.render(t)
+// })
+var t =[]
+slider.on('slideStart',(v)=>{
+    console.log("start v",v)
+    t.push(v.value)
+}).on('slideStop',(v)=>{
+    t.push(v.value)
+    appBelliesView.render(t)
+    console.log("end v",v)
+    t=[]
 })
 
 L.geoJSON(BOS, {
 
-        // onEachFeature: onEachFeature
-    }).addTo(map);
+    style:UTIL.get_style('baa')
+
+}).addTo(map);
     // and a menu view for stylish swappin'
     // window.appBaseMapsMenuView = new BaseMapsMenuView({
     //     collection: mapBaseLayers

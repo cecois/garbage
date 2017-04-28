@@ -224,7 +224,7 @@ if (clength > 2) {
 			"weight": 2,
 			"opacity": .9,
 			"fillOpacity": po,
-			radius: 22
+			"radius": 22
 		}
 
 		var stylehit = {
@@ -233,7 +233,7 @@ if (clength > 2) {
 			"weight": 4,
 			"opacity": .9,
 			"fillOpacity": hitpo,
-			radius: 22
+			"radius": 22
 		}
 		var stylefpo = {
 			"color": "black",
@@ -248,7 +248,7 @@ if (clength > 2) {
 			"weight": 2,
 			"opacity": .9,
 			"fillOpacity": hitpo,
-			radius: 22
+			"radius": 22
 		}
 
 		var stylehigh = {
@@ -257,31 +257,31 @@ if (clength > 2) {
 			"weight": 2,
 			"opacity": .9,
 			"fillOpacity": .8,
-			radius: 22
+			"radius": 22
 		}
 		var styleyellow = {
 			"color": "white",
 			"fillColor": "yellow",
 			"weight": 1,
 			"opacity": 1,
-			"fillOpacity": .5,
-			radius: 6
+			"fillOpacity": .7,
+			"radius": 6
 		}
 		var stylered = {
 			"color": "white",
 			"fillColor": "red",
 			"weight": 1,
 			"opacity": 1,
-			"fillOpacity": .5,
-			radius: 8
+			"fillOpacity": .7,
+			"radius": 8
 		}
 		var stylegreen = {
 			"color": "white",
 			"fillColor": "green",
 			"weight": 1,
 			"opacity": 1,
-			"fillOpacity": .5,
-			radius: 4
+			"fillOpacity": .7,
+			"radius": 4
 		}
 		var stylesilent = {
 			"color": "white",
@@ -289,11 +289,19 @@ if (clength > 2) {
 			"weight": 1,
 			"opacity": .4,
 			"fillOpacity": .2,
-			radius: 4
+			"radius": 4
+		}
+		var stylebaa = {
+			"color": "#013179",
+			"fillColor": "#013179",
+			"weight": 6,
+			"opacity": .4,
+			"fillOpacity": .4,
+			"radius": 4
 		}
 
 		var stylefpt = {
-			radius: 8,
+			"radius": 8,
 			fillColor: "purple",
 			color: "black",
 			weight: 1,
@@ -313,6 +321,9 @@ if (clength > 2) {
 			break;
 			case "out of range":
 			return stylesilent
+			break;
+			case "baa":
+			return stylebaa
 			break;
 			case "default":
 			return stylesilent

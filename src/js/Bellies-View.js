@@ -24,11 +24,11 @@ var BelliesView = Backbone.View.extend({
 
 		return this
 	}
-,get_reps: function(t){
+	,get_reps: function(t){
 
-	var uniqs = this.collection.groupBy((m)=>{return UTIL.hasha(m.get("description"))})
-	var Y = null;
-	var REPS = _.map(uniqs,(U,i,l)=>{
+		var uniqs = this.collection.groupBy((m)=>{return UTIL.hasha(m.get("description"))})
+		var Y = null;
+		var REPS = _.map(uniqs,(U,i,l)=>{
 
 // maybe one/some will be in our time range
 var X = U.filter((u)=>{
@@ -87,10 +87,10 @@ return Y;
 
 
 
-	return REPS
+		return REPS
 
-}
-,render: function(t){
+	}
+	,render: function(t){
 
 
 		GLJ.clearLayers();
@@ -101,21 +101,21 @@ return Y;
 
 		_.each(ranged,(R,i,l)=>{
 
-if(R !== null){
-			if(typeof R.get !== 'undefined'){
-				var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style(R.get("fullness")))
-				cm.bindPopup(UTIL.hasha(R.get("description"))+".."+R.get("ts_as_ts"))
-				.addTo(GLJ);
+			if(R !== null){
+				if(typeof R.get !== 'undefined'){
+					var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style(R.get("fullness")))
+					cm.bindPopup("<span style='color:#bcbdbc;'>"+R.get("description")+" at "+moment(R.get("ts_as_ts"),['X']).format("dddd, MMMM Do YYYY, h:mm:ss a")+"</span>")
+					.addTo(GLJ);
+
+				}
 
 			}
 
-}
-
 		})
 
-appActivity.set({msg:null})
+		appActivity.set({msg:null})
 		return this
-		
+
 
 	}
 });
