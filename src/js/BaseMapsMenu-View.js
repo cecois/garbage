@@ -7,7 +7,6 @@ var BaseMapsMenuView = Backbone.View.extend({
 	template: Handlebars.templates['BaseMapsMenuViewTpl'],
 	initialize: function() {
 
-		// this.collection.bind('change:active', this.render, this);
 		this.listenTo(appState,'change:baselayer', this.render, this);
 		this.render()
 	},
@@ -15,13 +14,6 @@ var BaseMapsMenuView = Backbone.View.extend({
 
 		var n = $(e.currentTarget).attr("data-id")
 
-		// var aslz = appState.get("baselayer")
-
-		// var newaslz = _.reject(aslz, function(l) { //get rid of the one(s) that are baselayers cuz we gonna add a fresh one
-		// 	return _.contains(mapBaseLayers.pluck("name"), l)
-		// });
-console.log("setting baselayer w/:");console.log(n);
-		// newaslz.push(n)
 		appState.set({
 			baselayer: n
 		});

@@ -9,7 +9,6 @@ var BelliesView = Backbone.View.extend({
 		this.listenTo(appState, "change", this.render);
 
 		return this
-		// .preset()
 		.render()
 	}
 	,preset: function(){
@@ -106,8 +105,20 @@ return Y;
 	,stfu: ()=>{
 		appActivity.set({msg:null})
 	}
-	,render: function(t){
+	,render: function(){
 
+		switch(appState.get("slug")) {
+			case "baa":
+			min = Config.EVENTS.baa.start
+			break;
+			case "animebos":
+			min = Config.EVENTS.animebos.start
+			break;
+			default:
+			return null
+		}
+
+		var t = [min,appState.get("time")]
 
 		GLJ.clearLayers();
 		GLJ.clearAllEventListeners();
@@ -121,16 +132,16 @@ return Y;
 				if(typeof R.get !== 'undefined'){
 
 
-var clazz=null
-	switch(R.get("fullness")) {
-		case "default":
-		clazz = (mapBaseLayers.findWhere({"active":true}).get("mapis")=='dark')?'leaf-default-mapdark':'leaf-default-maplight';
-			break;
-		default:
-		clazz='leaf-'+R.get("fullness")
-	}
+					var clazz=null
+					switch(R.get("fullness")) {
+						case "default":
+						clazz = (mapBaseLayers.findWhere({"active":true}).get("mapis")=='dark')?'leaf-default-mapdark':'leaf-default-maplight';
+						break;
+						default:
+						clazz='leaf-'+R.get("fullness")
+					}
 
-var dc = L.divIcon({ className: clazz})
+					var dc = L.divIcon({ className: clazz})
 // var marker = L.marker([51.509, -0.08], {icon: div_circle} ).addTo(mymap);
 
 					// var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style(R.get("fullness")))
