@@ -1,6 +1,6 @@
 var Route = Backbone.Router.extend({
 	routes: {
-		"(:slug)(/:page)(/:query)(/:baselayer)(/:aoi)(/:downout)(/:active)(/:bbox)(/)":"default"
+		"(:slug)(/:baselayer)(/:downout)(/:time)(/:bbox)(/)":"default"
 	},
 	initialize: function(options) {
 		options || (options = {});
@@ -17,20 +17,21 @@ var Route = Backbone.Router.extend({
 			return this
 
 		},
-		default: function(slug,page,query,baselayer,aoi,downout,active,bbox) {
+		default: function(slug,baselayer,downout,time,bbox) {
 
 // console.info("VARDUMP:");
 // console.log("slug:"+slug+";page:"+page+";query:"+query+";baselayer:"+baselayer+";aoi:"+aoi+";downout:"+downout+";active:"+active+";bbox:"+bbox);
 
 var zslug = (typeof slug !=='undefined' && slug !== null) ? slug : "baa";
 
-var zactive = (typeof active !=='undefined' && active !== null) ? active : null;
+// var zactive = (typeof active !=='undefined' && active !== null) ? active : null;
 
-var zpage = (typeof page !=='undefined' && active !== null) ? page : "1";
+// var zpage = (typeof page !=='undefined' && active !== null) ? page : "1";
 
-var zquery = ((query!==null) && (query!=="nil") && (query)) ? query : "*:*";
+// var zquery = ((query!==null) && (query!=="nil") && (query)) ? query : "*:*";
 
-var zaoi = ((aoi!==null) && (aoi!=="nil") && (aoi)) ? aoi : null;
+var ztime = ((time!==null) && (time!=="nil") && (time)) ? time : appState.get("time");
+// var zaoi = ((aoi!==null) && (aoi!=="nil") && (aoi)) ? aoi : null;
 
 		// var zblayername = ( baselayer=="nil" || typeof baselayer == 'undefined' || baselayer == null) ? mapBaseLayers.findWhere({active:true}).get("name"):
 		var zblayername = ( baselayer=="nil" || typeof baselayer == 'undefined' || baselayer == null ) ? mapBaseLayers.findWhere({active:true}).get("name") : baselayer;
@@ -55,21 +56,24 @@ var zbbox = (typeof bbox !== 'undefined' && bbox!==null && bbox!=="null" && bbox
 appState.set({
 	downout:zdownout
 	,
-	page: zpage,
+	// page: zpage,
 	slug:
 	(appState.get("slug")!==zslug) ? zslug : appState.get("slug")
+	// ,
+	// active:
+	// (appState.get("active")!==zactive) ? zactive : appState.get("active")
 	,
-	active:
-	(appState.get("active")!==zactive) ? zactive : appState.get("active")
-	,
-	aoi:
-	(appState.get("aoi")!==zaoi) ? zaoi : appState.get("aoi")
+	time:ztime
+	// (appState.get("time")!==ztime) ? ztime : appState.get("time")
+	// ,
+	// aoi:
+	// (appState.get("aoi")!==zaoi) ? zaoi : appState.get("aoi")
 	,
 	bbox:
 	zbbox,
 	// layers:_.unique(zlayers),
-	baselayer:zblayername,
-	query: zquery
+	baselayer:zblayername
+	// ,query: zquery
 })
 
 }

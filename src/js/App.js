@@ -23,32 +23,6 @@ window.appState = new State();
 window.appPanels = new PanelsCollection(panelz.panels);
 window.appPanelMenuView = new PanelMenuView({collection:appPanels});
 
-var slider = $("#slider").slider({
-    id:"slider"
-    ,formatter: (v)=>{return moment(v,['X']).format('dd hh:ss A')}
-    ,ticks_snap_bounds:1800
-    ,ticks:[ 1398038400,
-    1398045600,
-    1398052800,
-    1398060000,
-    1398067200,
-    1398074400,
-    1398081600,
-    1398088800,
-    1398096000,
-    1398103200,
-    1398110400,
-    1398117600,
-    1398124800,
-    1398132000,
-    1398139200,
-    1398146400,
-    1398153600,
-    1398160800,
-    1398168000 ]
-    ,tooltip:"show"
-    }); //slider init
-
 //
 // MANAGES PANECONTAINERS FOR ONE THING
 window.appActivity = new Activity();
@@ -66,17 +40,10 @@ window.mapBaseMapView = new BaseMapView({
     collection: mapBaseLayers
 });
 
-window.appBellies = new BelliesCollection();window.appBelliesView  = new BelliesView({collection:appBellies});
+window.appBellies = new BelliesCollection();
+window.appBelliesMenuView  = new BelliesMenuView({collection:appBellies});
+window.appBelliesView  = new BelliesView({collection:appBellies});
 
-var t =[]
-slider.on('slideStart',(v)=>{
-    appActivity.set({msg:"calculating Belly signals since "+moment(v.value,['X']).format("ddd, hA")+"...",throb:true})
-    t.push(v.value)
-}).on('slideStop',(v)=>{
-    t.push(v.value)
-    appBelliesView.render(t)
-    t=[]
-})
 
 L.geoJSON(BOS, {
 

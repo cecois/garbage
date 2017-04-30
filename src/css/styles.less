@@ -365,12 +365,16 @@ color:@primary;
 }
 
 #mini-console{
-/*font-size:2em;*/
-text-align:left;
+  min-height:15px;
+  margin-top:12px;
+  padding-top:12px;
+font-size:.8em;
+text-align:center;
 
-#mc-msg{
-  text-align:left;
-}
+
+// #mc-msg{
+//   text-align:left;
+// }
 
 }
 
@@ -640,6 +644,7 @@ SEARCH STUFF
   }
 
   #searchFormContainer{
+    min-height: 100px;
     #inputSearch{
       margin-top:22px;
     }
@@ -648,7 +653,7 @@ SEARCH STUFF
     color:@primary;
     background-color:@lgod-white;
     // .paneOpacity;
-    padding:20px 0px;
+    padding:20px 0px 0px;
     text-align:center;
   }
 
@@ -1051,6 +1056,67 @@ MAP STUFF
 
     }
 
+
+
+/* ----------
+LEAFLIT ICONOGRAPHY
+------------ */
+@bellydefault-mapdark: white;
+@bellydefault-mapdark-border: darken(@bellydefault-mapdark,25%);
+.leaf-default-mapdark {
+  opacity:.5;
+  background: @bellydefault-mapdark; /* color of the circle */
+  border-radius: 50%; /* make the div a circular shape */
+  box-shadow: 0px 0px 1px @bellydefault-mapdark-border; /* see http://www.w3schools.com/css/css3_shadows.asp */
+  -moz-box-shadow: 0px 0px 1px @bellydefault-mapdark-border;
+  -webkit-box-shadow: 0px 0px 1px @bellydefault-mapdark-border;
+}
+@bellydefault-maplight: #864900;
+@bellydefault-maplight-border: darken(@bellydefault-maplight,25%);
+.leaf-default-maplight {
+  opacity:.5;
+  background: @bellydefault-maplight; /* color of the circle */
+  border-radius: 50%; /* make the div a circular shape */
+  box-shadow: 0px 0px 1px @bellydefault-maplight-border; /* see http://www.w3schools.com/css/css3_shadows.asp */
+  -moz-box-shadow: 0px 0px 1px @bellydefault-maplight-border;
+  -webkit-box-shadow: 0px 0px 1px @bellydefault-maplight-border;
+}
+
+@bellygreen: #44E33C;
+@bellygreen-border: darken(@bellygreen,25%);
+.leaf-GREEN {
+  opacity:.8;
+  background: @bellygreen; /* color of the circle */
+  border: solid @bellygreen-border 1px;
+  border-radius: 50%; /* make the div a circular shape */
+  box-shadow: 0px 0px 2px 1px @bellygreen-border; /* see http://www.w3schools.com/css/css3_shadows.asp */
+  -moz-box-shadow: 0px 0px 2px 1px @bellygreen-border;
+  -webkit-box-shadow: 0px 0px 2px 1px @bellygreen-border;
+}
+@bellyyellow: #D4E21B;
+@bellyyellow-border: darken(@bellyyellow,25%);
+.leaf-YELLOW {
+  opacity:.8;
+  background: @bellyyellow; /* color of the circle */
+  border: solid @bellyyellow-border 2px;
+  border-radius: 50%; /* make the div a circular shape */
+  box-shadow: 0px 0px 2px 2px @bellyyellow-border; /* see http://www.w3schools.com/css/css3_shadows.asp */
+  -moz-box-shadow: 0px 0px 2px 2px @bellyyellow-border;
+  -webkit-box-shadow: 0px 0px 2px 2px @bellyyellow-border;
+}
+@bellyred: #DB0013;
+@bellyred-border: darken(@bellyred,25%);
+.leaf-RED {
+  opacity:.8;
+  width:20px;height:20px;
+  background: @bellyred; /* color of the circle */
+  border: solid @bellyred-border 3px;
+  border-radius: 50%; /* make the div a circular shape */
+  box-shadow: 0px 0px 2px 3px @bellyred-border; /* see http://www.w3schools.com/css/css3_shadows.asp */
+  -moz-box-shadow: 0px 0px 2px 3px @bellyred-border;
+  -webkit-box-shadow: 0px 0px 2px 3px @bellyred-border;
+}
+
 /* ----------
 BASEMAP MENU
 ------------ */
@@ -1335,6 +1401,8 @@ MISC
 }}
 
 /* ------------------------------------ SLIDER OVERRIDES --------------------------------------------*/
+#slider-container{
+  margin-top:12px;
 
 #slider{
   .tooltip{
@@ -1347,6 +1415,8 @@ MISC
     border-top-color:@primary;
   }
 }
+}
+
 .slider.slider-horizontal{
   width:100%;
 }

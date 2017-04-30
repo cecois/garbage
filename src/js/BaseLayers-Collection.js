@@ -9,7 +9,6 @@ var BaseLayersCollection = Backbone.Collection.extend({
 	},
 	activate: function(nl) {
 
-		console.log("activate nl:");console.log(nl);
 
 		var nm = this.findWhere({
 			name: nl
@@ -24,10 +23,8 @@ var BaseLayersCollection = Backbone.Collection.extend({
 	preswitch: function() { // we don't trust the incoming layers arr to always be clean
 
 
-console.log("deactivating...");
 var ol = this.findWhere({active:true})
 
-console.log("ol:");console.log(ol.get("name"));
 ol.set({active:false},{silent:true}) //silent bc we are gonna set true next and that's gonna trigger
 
 var tl = this.findWhere({name:appState.get("baselayer")})

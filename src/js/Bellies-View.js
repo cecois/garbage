@@ -5,20 +5,13 @@ var BelliesView = Backbone.View.extend({
 		GLJ = L.featureGroup()
 		.addTo(map);
 
-		this.collection.bind('sync', this.preset, this);
+		this.collection.bind('sync', this.render, this);
+		this.listenTo(appState, "change", this.render);
 
 		return this
-		.preset()
+		// .preset()
+		.render()
 	}
-	// ,prerender:function(t){
-
-	// 	appActivity.set({msg:"prerendering..."})
-
-	// 	return this
-	// 	.render(t)
-
-
-	// }
 	,preset: function(){
 
 
@@ -48,6 +41,7 @@ var X = U.filter((u)=>{
 
 if(X.length==1){
 			// got one in range, return it
+
 			Y=X[0];
 		} else if(X.length>1){
 
@@ -57,27 +51,28 @@ if(X.length==1){
 			var ti = _.max(_.map(X,(t)=>{return t.get("ts_as_ts");}))
 
 
-			// now use that as an index, of sorts, to find that full station doc
+			// now use that as an index, of sorts, to find that full station doc and return it
 			Y = _.find(X,(t)=>{return t.get("ts_as_ts")==ti;});
+
 
 		} else {
 			// none in range, we gotta find the nearest (price is right rules)
-// build an array of all possible timestamps for this station
 
 // first get that station's records...
-
 var allz = _.filter(l,(m)=>{return UTIL.hasha(m[0].get("description"))==UTIL.hasha(U[0].get("description"))});
 
 
 var tses = _.map(allz[0],(m)=>{return m.get("ts_as_ts");});
 
-var lt = parseFloat(t[0])
+var lt = parseFloat(t[1])
 
 var p = _.partition(tses,(tl)=>{return tl<lt})
 
 if(p[0].length>0){
 
 	var las = _.last(p[0])
+
+	// if(las<t[1])
 	var xb = _.find(allz,(tz)=>{
 		var ta= _.find(tz,(t)=>{
 			return t.get("ts_as_ts")==las
@@ -86,6 +81,15 @@ if(p[0].length>0){
 	}) //find.allz
 	Y=_.last(xb)
 	Y=_.find(xb,(x)=>{return x.get("ts_as_ts")==las})
+
+} else {
+	// nothing before passed time, we'll just return a dummy rep for this station
+	Y=_.last(allz[0])
+	// Y.fullness="out of range"
+	Y.set({fullness:"default"})
+	Y.set({ts_as_ts:null})
+	
+
 }
 
 }
@@ -115,8 +119,30 @@ return Y;
 
 			if(R !== null){
 				if(typeof R.get !== 'undefined'){
-					var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style(R.get("fullness")))
-					cm.bindPopup("<span style='color:#bcbdbc;'>"+R.get("description")+" at "+moment(R.get("ts_as_ts"),['X']).format("dddd, MMMM Do YYYY, h:mm:ss a")+"</span>")
+
+
+var clazz=null
+	switch(R.get("fullness")) {
+		case "default":
+		clazz = (mapBaseLayers.findWhere({"active":true}).get("mapis")=='dark')?'leaf-default-mapdark':'leaf-default-maplight';
+			break;
+		default:
+		clazz='leaf-'+R.get("fullness")
+	}
+
+var dc = L.divIcon({ className: clazz})
+// var marker = L.marker([51.509, -0.08], {icon: div_circle} ).addTo(mymap);
+
+					// var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style(R.get("fullness")))
+					// var tim_as_tim = (R.get("ts_as_ts")==null)?" (no call in range)":" at "+moment(R.get("ts_as_ts"),['X']).format("dddd, MMMM Do YYYY, h:mm:ss a")
+					// cm.bindPopup("<span style='color:#bcbdbc;'>"+R.get("description")+tim_as_tim+"</span>")
+					// .addTo(GLJ);
+					// 
+					
+
+					var cm = L.marker([R.get("lat"),R.get("lng")], {icon:dc})
+					var tim_as_tim = (R.get("ts_as_ts")==null)?" (no call in range)":" at "+moment(R.get("ts_as_ts"),['X']).format("dddd, MMMM Do YYYY, h:mm:ss a")
+					cm.bindPopup("<span style='color:#bcbdbc;'>"+R.get("description")+tim_as_tim+"</span>")
 					.addTo(GLJ);
 
 				}
