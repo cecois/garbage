@@ -5,33 +5,26 @@ var BelliesView = Backbone.View.extend({
 		GLJ = L.featureGroup()
 		.addTo(map);
 
-		this.collection.bind('sync', this.render, this);
-		this.listenTo(appState, "change", this.render);
+		this.listenTo(this.collection, "reset", this.render);
+		this.listenTo(appState, "change", this.prefetch);
 
 		return this
 		// .render()
 	}
-	// ,preset: function(){
+	,prefetch: function(){
 
+		// not great! but also genius
+		this.collection.fetch({reset:true})
 
-	// 	_.each(this.collection.models,function(R){
-
-
-	// 		var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style("default")).addTo(GLJ);
-
-	// 	}); //each
-
-	// 	// map.fitBounds([[42.3037216984154,-71.21337890625001],[42.41635997208289,-70.9545135498047]]);
-
-	// 	return this
-	// }
+		return this
+	}
 	,get_reps: function(t){
 
 // make sure we're getting integers
 var t = _.map(t,(t)=>{return parseInt(t);})
-		
-		var uniqs = this.collection.groupBy((m)=>{return UTIL.hasha(m.get("description"))})
-		
+
+var uniqs = this.collection.groupBy((m)=>{return UTIL.hasha(m.get("description"))})
+
 		// console.log("556:",);
 
 		var Y = null;
@@ -48,8 +41,8 @@ if(X.length==1){
 
 // if(X[0].get("description")=="556 Commercial St"){ console.log("Comm in range ",X); }
 
-			Y=X[0];
-		} else if(X.length>1){
+Y=X[0];
+} else if(X.length>1){
 
 
 			// more than one report in range, gotta choose the most recent
@@ -62,7 +55,7 @@ if(X.length==1){
 
 // if(Y.get("description")=="556 Commercial St"){ console.log("Comm in range multiple ",Y); }
 
-		} else {
+} else {
 			// none in range, we gotta find the nearest (price is right rules)
 
 // first get that station's records...
@@ -74,7 +67,7 @@ var allz = _.filter(l,(m)=>{
 
 
 var tses = _.map(allz[0],(m)=>{
-	
+
 	// if(m.get("description")=="556 Commercial St"){
 	// 	console.log("m",m);
 	// 	console.log("m.description",m.get("description"));
@@ -99,7 +92,7 @@ if(p[0].length>0){
 
 // console.log("p0.length>0",p[0]);
 
-	var las = _.last(p[0])
+var las = _.last(p[0])
 	// if(las<t[1])
 	var xb = _.find(allz,(tz)=>{
 		// console.log("xb",xb);
@@ -122,7 +115,7 @@ if(p[0].length>0){
 	Y.set({fullness:"default"})
 	Y.set({ts_as_ts:null})
 
-// if(Y.get("description")=="556 Commercial St"){ console.log("Y will default ",Y); }	
+// if(Y.get("description")=="556 Commercial St"){ console.log("Y will default ",Y); }
 
 }
 
@@ -141,8 +134,6 @@ return Y;
 		appActivity.set({msg:null})
 	}
 	,render: function(){
-
-console.log("in render BV");
 		switch(appState.get("slug")) {
 			case "baa":
 			min = Config.EVENTS.baa.start

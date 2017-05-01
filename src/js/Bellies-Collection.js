@@ -5,11 +5,12 @@ var BelliesCollection = Backbone.Collection.extend({
 	},
 	initialize: function(options) {
 		// this.listenTo(appState, 'change:slug', this.deactivate);
+		// this.listenTo(appState, "change", this.fetch({reset:true}));
 		options || (options = {});
-		return this.fetch()
+		return this
+		// .fetch()
 	}
 	,parse: function (nodes) {
-
-        return nodes.rows
-    }
+		return nodes.rows
+	}
 });

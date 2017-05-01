@@ -3,7 +3,8 @@ var BelliesMenuView = Backbone.View.extend({
 	events: {
 	},
 	initialize: function() {
-		this.collection.bind('sync', this.render, this);
+		// this.collection.bind('sync', this.render, this);
+		this.collection.bind('reset', this.render, this);
 		// this.listenTo(appState, "change:time", this.render);
 
 		return this
