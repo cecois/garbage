@@ -145,33 +145,41 @@
 <div id="paneContainer" class="tab-content container-fluid col-sm-12">
 
   <div class="tab-pane active row" id="home"><h1>Welcome to the 2014 Boston Garbage Atlas</h1>
-<p>Eh -it's hardly an atlas, actually. It's an entry into the 2017 <a href="https://data.boston.gov/pages/opendatachallenge">Analyze Boston Open Data Challenge</a>. Mapped here (temporally and spatially) are the Big Bellies' calls (for help?) during and around four specific events in 2014. While no attempt was made at analysis (e.g. do Wine Rioters generate more garbage than Marathon fans?), one could, feasibly, do so. But why? Garbage is beautiful as-is.</p>
-  <br/>
-  <br/>
-    <p>Select an event with the tabs, above, and Belly alerts for that event's timespan (represented by the slider up there) will begin lighting up with the color of their alert status (<span style="background-color:green;">green</span> for "I'm aight"; <span style="background-color:yellow;">yellow</span> for "I can't take much more"; <span style="background-color:red;">red</span> for "somebody please evacuate me"; <span style="background-color:white;">white</span>/<span style="background-color:brown;">brown</span> [depending on the map style] for Bellies yet to make a call within the event's temporal range)</p>
+    <p>Eh - it's hardly an atlas, actually. It's just an entry into the 2017 <a href="https://data.boston.gov/pages/opendatachallenge">Analyze Boston Open Data Challenge</a>. Mapped here (temporally and spatially) are the "Big Belly" trash receptacles' calls (for help?) during and around four specific events in 2014. While no attempt was made at analysis (e.g. do Wine Rioters generate more garbage than Marathon fans?), one could, feasibly, do so. But why? Garbage is beautiful as-is.</p>
+    <br/>
+    <br/>
+    <p>Select an event with the tabs, above, and Belly alerts for that event's timespan (represented by the slider up there) will begin lighting up with the color of their alert status (<div style="display:inline-block;height:12px;width:12px;background-color:#44E33C;border: solid black 1px;border-radius: 50%;"></div> for "I'm aight"; <div style="display:inline-block;height:12px;width:12px;background-color:#D4E21B;border: solid black 1px;border-radius: 50%;"></div> for "I can't take much more"; <div style="display:inline-block;height:12px;width:12px;background-color:#DB0013;border: solid black 1px;border-radius: 50%;"></div> for "somebody please evacuate me"; <div style="display:inline-block;height:12px;width:12px;background-color:white;border: solid black 1px;border-radius: 50%;"></div>/<div style="display:inline-block;height:12px;width:12px;background-color:#864900;border: solid black 1px;border-radius: 50%;"></div> [depending on the map style] for Bellies yet to make a call within the event's temporal range)</p>
 
   </div>
 
   <div class="tab-pane active row" id="baa"><h1>2014 Boston Marathon</h1>
-  <div><div class="garbage-title">WHEN:</div><span class="garbage-copy">(April 21, 2014)</span>
-  <div class="garbage-title">Bellies probably full of:</div><span class="garbage-copy">Santander cowbells; homemade signs; sweaty, discarded rainbow boas?</span></div>
+    <div><div class="garbage-title">WHEN:</div><span class="garbage-copy">(April 21, 2014)</span>
+    <div class="garbage-title">Bellies probably full of:</div><span class="garbage-copy">Santander cowbells; homemade signs; sweaty, discarded rainbow boas?</span></div>
   </div>
-  
+
   <div class="tab-pane active row" id="animebos"><h1>Anime Boston 2014</h1>
-  <div class="garbage-title">WHEN:</div><span class="garbage-copy">(March 21-23, 2014)</span>
-  <div class="garbage-title">Bellies probably full of:</div><span class="garbage-copy">100% Pikachus?</span>
+    <div class="garbage-title">WHEN:</div><span class="garbage-copy">(March 21-23, 2014)</span>
+    <div class="garbage-title">Bellies probably full of:</div><span class="garbage-copy">100% Pikachus?</span>
   </div>
   <div class="tab-pane active row" id="boscalling"><h1>Boston Calling 2014 (Fall)</h1>
-  <div class="garbage-title">WHEN:</div><span class="garbage-copy">(Sep 5-7, 2014)</span>
-  <div class="garbage-title">Bellies probably full of:</div><span class="garbage-copy">crushed and stomped pork pie hats?</span>
+    <div class="garbage-title">WHEN:</div><span class="garbage-copy">(Sep 5-7, 2014)</span>
+    <div class="garbage-title">Bellies probably full of:</div><span class="garbage-copy">crushed and stomped pork pie hats?</span>
   </div>
   <div class="tab-pane active row" id="riot"><h1>Wine Riot Boston - Spring 2014</h1>
-  <div class="garbage-title">WHEN:</div><span class="garbage-copy">(October 24-25, 2014)</span>
-  <div class="garbage-title">Bellies probably full of:</div><span class="garbage-copy">a bottle of <em>way</em> too fruit-forward Malbec?</span>
+    <div class="garbage-title">WHEN:</div><span class="garbage-copy">(October 24-25, 2014)</span>
+    <div class="garbage-title">Bellies probably full of:</div><span class="garbage-copy">a bottle of <em>way</em> too fruit-forward Malbec?</span>
   </div>
 
   <div class="tab-pane" id="about"><h1>ABOUT</h1>
-Available from <a href="https://data.boston.gov">Boston Open Data</a> are <a href="https://data.boston.gov/dataset/big-belly-alerts-2014">Big Belly Alerts for the entirety of 2014</a>. These are signals sent by, let's be honest, trash cans that indicate their remaining capacity. Here you will find a few select subsets of 2014 data that coincide with various events in the city that year.
+    <p>Available from <a href="https://data.boston.gov">Boston Open Data</a> are <a href="https://data.boston.gov/dataset/big-belly-alerts-2014">Big Belly Alerts for the entirety of 2014</a>. These are signals sent by, let's be honest, trash cans that indicate their remaining capacity. Here you will find a few select subsets of 2014 data that coincide with various events in the city that year.</p>
+    <p>This web app was built simply and quickly, made to operate simply and quickly. This way:
+      <ol>
+        <li>Bellies data were downloaded from <a href="https://data.boston.gov/">Analyze Boston</a></li>
+        <li>data were imported into a hosted <a href="https://www.mongodb.com/cloud/atlas">MongoDB Atlas</a> instance</li>
+        <li>a simple API in <a href="https://nodejs.org">NodeJS</a> was written to extract distinct temporal ranges (corresponding with hand-selected events)</li>
+        <li>the web app uses <a href="http://backbonejs.org">Backbone</a>, <a href="http://leafletjs.com">Leaflet</a>, <a href="http://getbootstrap.com">Bootstrap</a>, <a href="https://momentjs.com">Moment</a> and a handful of other libraries and utilities, all open source</li>
+      </ol>
+    </p>
   </div>
 
 

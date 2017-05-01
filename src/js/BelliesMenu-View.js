@@ -12,7 +12,6 @@ var BelliesMenuView = Backbone.View.extend({
 // .prep()
 }
 ,render: function(t){
-	console.log("appstate.slug",appState.get("slug"))
 	if(appState.get("slug")=="home" || appState.get("slug")=="about"){
 
 		// $(this.el).html('')
