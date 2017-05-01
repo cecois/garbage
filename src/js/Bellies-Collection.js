@@ -9,6 +9,7 @@ var BelliesCollection = Backbone.Collection.extend({
 		return this.fetch()
 	}
 	,parse: function (nodes) {
+
         return nodes.rows
     }
 });

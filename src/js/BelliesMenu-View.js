@@ -4,6 +4,7 @@ var BelliesMenuView = Backbone.View.extend({
 	},
 	initialize: function() {
 		this.collection.bind('sync', this.render, this);
+		// this.listenTo(appState, "change:time", this.render);
 
 		return this
 // .prep()
@@ -43,7 +44,7 @@ var BelliesMenuView = Backbone.View.extend({
 	}
 	while (i < inc);
 
-	delete _.last(ticks);
+	// delete _.last(ticks);
 
 	if(appState.get("time")!=='undefined'){
 		var sv= parseInt(appState.get("time"))
@@ -53,19 +54,20 @@ var BelliesMenuView = Backbone.View.extend({
 		var sv= null
 	}
 
+
 	var t=[]
 	var slider = $(this.el).slider({
 		id:"slider"
 		,formatter: (v)=>{return moment(v,['X']).format('dd (Do) hh:ss A')}
-		,ticks_snap_bounds:inc/2
+		,ticks_snap_bounds:incv/2
 		,ticks: _.uniq(ticks)
 		,tooltip:"show"
 		,value:sv
 	})
 	.on('change',(v)=>{
 		// var t = [_.min(ticks),v.value.newValue]
-		appState.set({time:v.value.newValue})
-		appBelliesView.render()
+		appState.set({time:parseInt(v.value.newValue)})
+		// appBelliesView.render()
 	})
 
 

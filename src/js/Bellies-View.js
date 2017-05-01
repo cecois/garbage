@@ -9,37 +9,44 @@ var BelliesView = Backbone.View.extend({
 		this.listenTo(appState, "change", this.render);
 
 		return this
-		.render()
+		// .render()
 	}
-	,preset: function(){
+	// ,preset: function(){
 
 
-		_.each(this.collection.models,function(R){
+	// 	_.each(this.collection.models,function(R){
 
 
-			var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style("default")).addTo(GLJ);
+	// 		var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style("default")).addTo(GLJ);
 
-		}); //each
+	// 	}); //each
 
-		// map.fitBounds([[42.3037216984154,-71.21337890625001],[42.41635997208289,-70.9545135498047]]);
+	// 	// map.fitBounds([[42.3037216984154,-71.21337890625001],[42.41635997208289,-70.9545135498047]]);
 
-		return this
-	}
+	// 	return this
+	// }
 	,get_reps: function(t){
 
+// make sure we're getting integers
+var t = _.map(t,(t)=>{return parseInt(t);})
+		
 		var uniqs = this.collection.groupBy((m)=>{return UTIL.hasha(m.get("description"))})
+		
+		// console.log("556:",);
+
 		var Y = null;
 		var REPS = _.map(uniqs,(U,i,l)=>{
 
 // maybe one/some will be in our time range
 var X = U.filter((u)=>{
-	return (u.get("ts_as_ts")>=t[0] && u.get("ts_as_ts")<=t[1]);
+	// if(u.get("ts_as_ts")!==null && u.get("ts_as_ts")>=parseInt(t[0]) && u.get("ts_as_ts")<=parseInt(t[1]) && u.get("description")=="556 Commercial St"){console.log("U.filter found at least one valid 556Comm....");console.log(u)}
+	return (u.get("ts_as_ts")!==null && u.get("ts_as_ts")>=parseInt(t[0]) && u.get("ts_as_ts")<=parseInt(t[1]));
 		}) //filter
-
-
 
 if(X.length==1){
 			// got one in range, return it
+
+// if(X[0].get("description")=="556 Commercial St"){ console.log("Comm in range ",X); }
 
 			Y=X[0];
 		} else if(X.length>1){
@@ -53,33 +60,60 @@ if(X.length==1){
 			// now use that as an index, of sorts, to find that full station doc and return it
 			Y = _.find(X,(t)=>{return t.get("ts_as_ts")==ti;});
 
+// if(Y.get("description")=="556 Commercial St"){ console.log("Comm in range multiple ",Y); }
 
 		} else {
 			// none in range, we gotta find the nearest (price is right rules)
 
 // first get that station's records...
-var allz = _.filter(l,(m)=>{return UTIL.hasha(m[0].get("description"))==UTIL.hasha(U[0].get("description"))});
+var allz = _.filter(l,(m)=>{
+	// if(m[0].get("description")=="556 Commercial St"){
+	// 	console.log("in allz.filter, 556Comm:",m[0]);
+	// }
+	return UTIL.hasha(m[0].get("description"))==UTIL.hasha(U[0].get("description"))});
 
 
-var tses = _.map(allz[0],(m)=>{return m.get("ts_as_ts");});
+var tses = _.map(allz[0],(m)=>{
+	
+	// if(m.get("description")=="556 Commercial St"){
+	// 	console.log("m",m);
+	// 	console.log("m.description",m.get("description"));
+	// 	console.log("m.ts_as_ts",m.get("ts_as_ts"));
+	// }
+
+	return m.get("ts_as_ts");
+});
+
+// console.log("tses.70",tses);
 
 var lt = parseFloat(t[1])
 
-var p = _.partition(tses,(tl)=>{return tl<lt})
+// console.log("now we partioni using "+lt);
+
+var p = _.partition(tses,(tl)=>{return tl<=lt})
+
+// console.log("p0.length",p[0].length);
+// console.log("p1.length",p[1].length);
 
 if(p[0].length>0){
 
-	var las = _.last(p[0])
+// console.log("p0.length>0",p[0]);
 
+	var las = _.last(p[0])
 	// if(las<t[1])
 	var xb = _.find(allz,(tz)=>{
-		var ta= _.find(tz,(t)=>{
-			return t.get("ts_as_ts")==las
+		// console.log("xb",xb);
+		var ta= _.find(tz,(tw)=>{
+			// return tw.get("ts_as_ts")==las
+			return tw.get("ts_as_ts")==las
 		}) //find.tz
+		// console.log("ta",ta);
 		return ta
 	}) //find.allz
-	Y=_.last(xb)
+	// Y=_.last(xb)
 	Y=_.find(xb,(x)=>{return x.get("ts_as_ts")==las})
+
+	// if(Y.get("description")=="556 Commercial St"){ console.log("Comm not between "+t[0]+" and "+t[1]+" but thers a lower ",Y); }
 
 } else {
 	// nothing before passed time, we'll just return a dummy rep for this station
@@ -87,7 +121,8 @@ if(p[0].length>0){
 	// Y.fullness="out of range"
 	Y.set({fullness:"default"})
 	Y.set({ts_as_ts:null})
-	
+
+// if(Y.get("description")=="556 Commercial St"){ console.log("Y will default ",Y); }	
 
 }
 
@@ -107,6 +142,7 @@ return Y;
 	}
 	,render: function(){
 
+console.log("in render BV");
 		switch(appState.get("slug")) {
 			case "baa":
 			min = Config.EVENTS.baa.start
@@ -123,7 +159,7 @@ return Y;
 		GLJ.clearLayers();
 		GLJ.clearAllEventListeners();
 
-		var T=t
+		// var T=t
 		var ranged = _.toArray(this.get_reps(t))
 
 		_.each(ranged,(R,i,l)=>{
@@ -142,14 +178,6 @@ return Y;
 					}
 
 					var dc = L.divIcon({ className: clazz})
-// var marker = L.marker([51.509, -0.08], {icon: div_circle} ).addTo(mymap);
-
-					// var cm = L.circleMarker([R.get("lat"),R.get("lng")], UTIL.get_style(R.get("fullness")))
-					// var tim_as_tim = (R.get("ts_as_ts")==null)?" (no call in range)":" at "+moment(R.get("ts_as_ts"),['X']).format("dddd, MMMM Do YYYY, h:mm:ss a")
-					// cm.bindPopup("<span style='color:#bcbdbc;'>"+R.get("description")+tim_as_tim+"</span>")
-					// .addTo(GLJ);
-					// 
-					
 
 					var cm = L.marker([R.get("lat"),R.get("lng")], {icon:dc})
 					var tim_as_tim = (R.get("ts_as_ts")==null)?" (no call in range)":" at "+moment(R.get("ts_as_ts"),['X']).format("dddd, MMMM Do YYYY, h:mm:ss a")

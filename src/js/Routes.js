@@ -31,6 +31,7 @@ var zslug = (typeof slug !=='undefined' && slug !== null) ? slug : "baa";
 // var zquery = ((query!==null) && (query!=="nil") && (query)) ? query : "*:*";
 
 var ztime = ((time!==null) && (time!=="nil") && (time)) ? time : appState.get("time");
+
 // var zaoi = ((aoi!==null) && (aoi!=="nil") && (aoi)) ? aoi : null;
 
 		// var zblayername = ( baselayer=="nil" || typeof baselayer == 'undefined' || baselayer == null) ? mapBaseLayers.findWhere({active:true}).get("name"):
