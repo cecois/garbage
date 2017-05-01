@@ -22,7 +22,7 @@ var Route = Backbone.Router.extend({
 // console.info("VARDUMP:");
 // console.log("slug:"+slug+";page:"+page+";query:"+query+";baselayer:"+baselayer+";aoi:"+aoi+";downout:"+downout+";active:"+active+";bbox:"+bbox);
 
-var zslug = (typeof slug !=='undefined' && slug !== null) ? slug : "baa";
+var zslug = (typeof slug !=='undefined' && slug !== null) ? slug : appState.get("slug");
 
 // var zactive = (typeof active !=='undefined' && active !== null) ? active : null;
 

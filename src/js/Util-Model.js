@@ -295,8 +295,8 @@ if (clength > 2) {
 			"color": "#013179",
 			"fillColor": "#013179",
 			"weight": 6,
-			"opacity": .4,
-			"fillOpacity": .4,
+			"opacity": .6,
+			"fillOpacity": .6,
 			"radius": 4
 		}
 

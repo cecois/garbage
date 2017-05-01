@@ -47,12 +47,12 @@ var BelliesMenuView = Backbone.View.extend({
 
 	// delete _.last(ticks);
 
-	if(appState.get("time")!=='undefined'){
+	if(appState.get("time")!=='undefined' && appState.get("time")!==null){
 		var sv= parseInt(appState.get("time"))
 	}
 	else
 	{
-		var sv= null
+		var sv= min
 	}
 
 

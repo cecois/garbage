@@ -1,7 +1,7 @@
 var State = Backbone.Model.extend({
 	defaults: {
 		"downout": "down",
-		"slug": "baa",
+		"slug": "animebos",
 		"bbox": "-71.21337890625001,42.3037216984154,-70.9545135498047,42.41635997208289",
 		"baselayer": null,
 		"overlays": null,
@@ -12,7 +12,7 @@ var State = Backbone.Model.extend({
 		"active": null,
 		"dlex": "map",
 		"querytype": null
-		,"time":1398110100
+		,"time":null
 	},
 	initialize: function(options) {
 		options || (options = {});
@@ -72,13 +72,13 @@ var State = Backbone.Model.extend({
 // var uactive = this.get("active")
 var ubbox = this.get("bbox")
 
-var state = "#" + uslug + "/" 
-// + upage + "/" + uquery + "/" 
-+ ublayer + "/" 
-// + uaoi + "/" 
-+ udownout + "/" 
-// + uactive+ "/" 
-+ utime+ "/" 
+var state = "#" + uslug + "/"
+// + upage + "/" + uquery + "/"
++ ublayer + "/"
+// + uaoi + "/"
++ udownout + "/"
+// + uactive+ "/"
++ utime+ "/"
 + ubbox
 
 return state

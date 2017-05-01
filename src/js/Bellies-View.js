@@ -2,23 +2,55 @@ var BelliesView = Backbone.View.extend({
 	events: {
 	},
 	initialize: function() {
+		SIDEZ = L.featureGroup()
+		.addTo(map);
+
 		GLJ = L.featureGroup()
 		.addTo(map);
 
 		this.listenTo(this.collection, "reset", this.render);
 		this.listenTo(appState, "change", this.prefetch);
+		this.listenTo(appState, "change:slug", this.siderender);
 
 		return this
-		// .render()
+		.siderender()
 	}
 	,prefetch: function(){
 
+		// appActivity.set({msg:"calculating bellies..."})
 		// not great! but also genius
 		this.collection.fetch({reset:true})
 
 		return this
+		// .siderender()
 	}
-	,get_reps: function(t){
+	,siderender: function(){
+
+		SIDEZ.clearLayers();
+
+		switch(appState.get("slug")) {
+			case "baa":
+
+			$.getJSON( "assets/bos-route.geojson", function( data ) {
+
+				L.geoJSON(data, {style:UTIL.get_style('baa')}).addTo(SIDEZ);
+
+			});
+
+			break;
+			case "animebos":
+			min = Config.EVENTS.animebos.start
+			break;
+			default:
+			return null
+		}
+
+		if(SIDEZ.getLayers()>0){
+			map.fitBounds(SIDEZ.getBounds())}
+
+			return this
+		}
+		,get_reps: function(t){
 
 // make sure we're getting integers
 var t = _.map(t,(t)=>{return parseInt(t);})

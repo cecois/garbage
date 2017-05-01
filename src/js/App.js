@@ -45,8 +45,4 @@ window.appBelliesMenuView  = new BelliesMenuView({collection:appBellies});
 window.appBelliesView  = new BelliesView({collection:appBellies});
 
 
-L.geoJSON(BOS, {
 
-    style:UTIL.get_style('baa')
-
-}).addTo(map);
