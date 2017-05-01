@@ -48,7 +48,7 @@ var ztime = ((time!==null) && (time!=="nil") && (time)) ? time : appState.get("t
 // zlayers=new Array(zlayername)
 // zlayers=zlayername
 
-var zdownout = (typeof downout !== 'undefined' && downout!==null && downout !== 'nil') ? downout : "down";
+var zdownout = (typeof downout !== 'undefined' && downout!==null && downout !== 'nil') ? downout : appState.get("downout");
 
 var zbbox = (typeof bbox !== 'undefined' && bbox!==null && bbox!=="null" && bbox!=="nil") ? bbox : appState.get("bbox");
 

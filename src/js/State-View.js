@@ -9,15 +9,10 @@ var StateView = Backbone.View.extend({
 	},
 	initialize: function() {
 		this.listenTo(this.model, 'change', this.render)
-			// this.listenTo(map, 'moveend', this.bboxup);
 			return this
 		}
 		,downout: function(e) {
-			// console.log(e)
-			// return this
-			// console.log(e)
 			var target=null
-			// if(typeof e == 'object'){
 				if(e.type == 'click'){
 					e.preventDefault();
 					target = $(e.currentTarget).attr("id").split("-")[1]
@@ -35,7 +30,6 @@ var StateView = Backbone.View.extend({
 						target = null
 					}
 
-					// if(e.keyCode==18){target='down'} else if(e.keyCode==17){target='split';
 				}
 
 
@@ -51,22 +45,7 @@ if(this.model.get("downout")==target){
 				return this
 
 			},
-		// bboxup: function() {
 
-		// 	var bbox = map.getBounds().toBBoxString()
-
-		// 	if (bbox !== this.model.get("bbox")) {
-		// 		this.model.set({
-		// 			bbox: bbox
-		// 		})
-		// 		appDLEX.set({
-		// 			bbox: bbox
-		// 		})
-		// 	}
-
-		// 	return this
-
-		// },
 		render: function(a) {
 
 			switch (this.model.get("downout")) {

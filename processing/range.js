@@ -7,13 +7,13 @@ var MONGO = require('mongodb').MongoClient
 var Events={
     "marathon":{"start":"04/21/2014 00:00:00 AM","end":"04/22/2014 08:00:00 AM"}
     ,"anime":{"start":"","end":""}
-    ,"calling":{"start":"","end":""}
-    ,"comiccon":{"start":"","end":""}
+    ,"calling":{"start":"09/05/2014 12:00:00 PM","end":"09/08/2014 09:00:00 AM"}
     ,"nyd":{"start":"","end":""}
+    ,"riot":{"start":"10/24/2014 19:00:00 PM","end":"10/25/2014 23:00:00 PM"}
 }
 
-var tim_min = Events.marathon.start;
-var tim_max = Events.marathon.end;
+var tim_min = Events.calling.start;
+var tim_max = Events.calling.end;
 
 var get_bellies = (db,CEEBEE)=>{
 	db.collection('bellies').find().toArray((err,docs)=>{

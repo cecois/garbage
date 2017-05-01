@@ -298,6 +298,7 @@ RESETS & OVERRIDES
 *{resize:none;}
 body{
 color:@primary;
+font-family: 'Roboto Condensed', sans-serif;
   ::selection {
     background: @primary; /* WebKit/Blink Browsers */
     color:@lgod-white;
@@ -310,7 +311,7 @@ color:@primary;
   overflow: hidden;
   height:auto;
   background-color: @lgod-white;
-  font-family: 'Opensans',Arial,sans-serif;
+  // font-family: 'Opensans',Arial,sans-serif;
 
 }
 
@@ -761,7 +762,7 @@ NAV STUFF
       }
     }
     li.true{
-      background-color:@primary-glow;
+      background-color:lighten(@primary-glow,5%);
       // color:@primary-glow;
       // background-color:@lgod-white;
     }
@@ -773,6 +774,10 @@ PANE STUFF
 ------------ */
 
 #paneContainer{
+  .tab-pane{
+    padding:40px;
+    font-size:1.3em;
+  }
   /*background-color:orange;*/
   background-color: @lgod-white;
   min-height: 15px;
@@ -1431,6 +1436,19 @@ MISC
   background:lighten(@primary-glow,9%);
 }
 
+.garbage-title{
+  font-size:1.5em;
+  margin-top:15px;
+  text-align:left;
+  font-weight:400;
+  text-transform: uppercase;
+}
 
+.garbage-copy{
+  margin-bottom:14px;
+  text-align:left;
+  padding-left:20px;
+  font-weight:200;
+}
 
 /* ------------------------------------ SPECIALS --------------------------------------------*/

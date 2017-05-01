@@ -4,10 +4,14 @@ var PanelsCollection = Backbone.Collection.extend({
 		return null
 	},
 	initialize: function(options) {
-		this.listenTo(appState, 'change:slug', this.deactivate);
+		// this.listenTo(appState, 'change:slug', this.deactivate);
+		
 		options || (options = {});
+		return this
+		// .deactivate()
 	},
 	activate: function() {
+
 
 
 		_.each(this.models, function(m) {

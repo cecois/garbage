@@ -1,7 +1,7 @@
 var State = Backbone.Model.extend({
 	defaults: {
-		"downout": "down",
-		"slug": "animebos",
+		"downout": "out",
+		"slug": "home",
 		"bbox": "-71.21337890625001,42.3037216984154,-70.9545135498047,42.41635997208289",
 		"baselayer": null,
 		"overlays": null,

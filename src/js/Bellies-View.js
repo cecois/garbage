@@ -31,15 +31,27 @@ var BelliesView = Backbone.View.extend({
 		switch(appState.get("slug")) {
 			case "baa":
 
-			$.getJSON( "assets/bos-route.geojson", function( data ) {
+			$.getJSON( "assets/bos-route.geojson", function( data ) {L.geoJSON(data, {style:UTIL.get_style('baa')}).addTo(SIDEZ);});
 
-				L.geoJSON(data, {style:UTIL.get_style('baa')}).addTo(SIDEZ);
+			break;
+			case "home":
 
-			});
+			$.getJSON( "assets/bos-route.geojson", function( data ) {L.geoJSON(data, {style:UTIL.get_style('baa')}).addTo(SIDEZ);});
+
+			break;
+			case "about":
+
+			$.getJSON( "assets/bos-route.geojson", function( data ) {L.geoJSON(data, {style:UTIL.get_style('baa')}).addTo(SIDEZ);});
 
 			break;
 			case "animebos":
-			min = Config.EVENTS.animebos.start
+			$.getJSON( "assets/bos-hynes.geojson", function( data ) {L.geoJSON(data, {style:UTIL.get_style()}).addTo(SIDEZ);});
+			break;
+			case "boscalling":
+			$.getJSON( "assets/bos-calling.geojson", function( data ) {L.geoJSON(data, {style:UTIL.get_style()}).addTo(SIDEZ);});
+			break;
+			case "riot":
+			$.getJSON( "assets/bos-riot.geojson", function( data ) {L.geoJSON(data, {style:UTIL.get_style()}).addTo(SIDEZ);});
 			break;
 			default:
 			return null
@@ -172,6 +184,12 @@ return Y;
 			break;
 			case "animebos":
 			min = Config.EVENTS.animebos.start
+			break;
+			case "riot":
+			min = Config.EVENTS.riot.start
+			break;
+			case "boscalling":
+			min = Config.EVENTS.boscalling.start
 			break;
 			default:
 			return null

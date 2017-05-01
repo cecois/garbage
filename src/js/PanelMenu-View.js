@@ -11,10 +11,16 @@ var PanelMenuView = Backbone.View.extend({
 		}
 	},
 	initialize: function() {
-		this.listenTo(appState, 'change', this.render);
+		// this.listenTo(appState, 'change', this.render);
+		this.listenTo(this.collection, "change", this.render);
+		this.listenTo(appState, "change:slug", this.delegate);
 		return this.render()
-	},
-	render: function() {
+	}
+	,delegate: function(){
+this.collection.deactivate()
+		return this
+	}
+	,render: function() {
 
 		$(this.el).html(this.template(this.collection.toJSON()))
 		return this
